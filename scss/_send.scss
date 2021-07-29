@@ -1,0 +1,88 @@
+section[data-class="send"].send{
+    background: linear-gradient(99.55deg, #9E181B -16.72%, #2C4585 106.3%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0;
+    z-index: 2;
+
+    h2{
+        font-size: 2.2em;
+        color: white;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        width: 80%;
+
+        .input-box{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 40px;
+            border-radius: 50px;
+            background: #FFFFFF4D;
+            position: relative;
+
+            input{
+                border: none;
+                outline: none;
+                font-size: 1.6em;
+                color: white;
+                width: 100%;
+                background: transparent;
+                position: absolute;
+                padding-left: 45px;
+            }
+
+            img{
+                position: absolute;
+                pointer-events: none;
+                height: 18px;
+                left: 15px;
+            }
+        }
+
+        button{
+            padding: 10px 0;
+            border-radius: 50px;
+            font-size: 1.2em;
+            border: none;
+            margin-top: 15px;
+            outline: none;
+            
+            span{
+                background: linear-gradient(91.1deg, #9E181B -186.03%, #2C4585 306.11%);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+        }
+    }
+
+    
+    p{
+        color: white;
+        font-size: 9px;
+        margin-top: 20px;
+    }
+
+    @media (min-width: 1024px) {
+        padding: 150px 0;
+
+        h2{
+            font-size: 3.2em;
+        }
+        
+
+        form{
+            width: 45%;
+            max-width: 700px;
+        }
+
+        p{
+            font-size: 12px;
+        }
+    }
+}

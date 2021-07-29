@@ -1,0 +1,4067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LP Mueller</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="bg-1"></div>
+    <div class="bg-2"></div>
+  </div>
+
+  <style>
+    @charset "UTF-8";
+
+    @font-face {
+      font-family: Mangerica;
+      src: url("https://goffwd.sirv.com/Mueller/Mangerica-Thin.woff") format("woff");
+      font-weight: 100;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: Mangerica;
+      src: url("https://goffwd.sirv.com/Mueller/Mangerica-ExtraLight.woff") format("woff");
+      font-weight: 200;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: Mangerica;
+      src: url("https://goffwd.sirv.com/Mueller/Mangerica-Regular_1.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: Mangerica;
+      src: url("https://goffwd.sirv.com/Mueller/Mangerica-SemiBold_1.woff") format("woff");
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: Mangerica;
+      src: url("https://goffwd.sirv.com/Mueller/Mangerica-Black_1.woff") format("woff");
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    div[data-class=main].main {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: "Mangerica";
+      max-width: 100%;
+      position: relative;
+    }
+
+    html {
+      scroll-behavior: smooth !important;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .video-modal {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #2c458567;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .video-modal .youtube-box {
+      width: 90vw;
+      height: 30vh;
+      background-color: gray;
+      position: relative;
+    }
+
+    .video-modal .close {
+      width: 90vw;
+      height: 30vh;
+      position: absolute;
+    }
+
+    .video-modal .close::before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url("https://goffwd.sirv.com/Mueller/close.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      right: 0;
+      top: -40px;
+    }
+
+    @media (min-width: 1024px) {
+      .video-modal .youtube-box {
+        width: 61.5vw;
+        height: 70vh;
+      }
+
+      .video-modal .close {
+        width: 61.5vw;
+        height: 70vh;
+      }
+
+      .video-modal .close::before {
+        width: 40px;
+        height: 40px;
+        top: -50px;
+        cursor: pointer;
+      }
+    }
+
+    /* Components */
+    a[data-class=cta-white].cta-white {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      border: 1.5px solid #FFFFFF;
+      box-sizing: border-box;
+      border-radius: 7px;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 0.4em 2em;
+    }
+
+    @media (min-width: 1024px) {
+      a[data-class=cta-white].cta-white {
+        font-size: 1.5em;
+      }
+    }
+
+    .bold {
+      font-weight: 900;
+    }
+
+    div[data-class=hero].hero {
+      width: 100%;
+      height: 76vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      border-radius: 0px 0px 25px 25px;
+      overflow: hidden;
+    }
+
+    div[data-class=hero].hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      z-index: -1;
+      border-radius: 0px 0px 25px 25px;
+    }
+
+    div[data-class=hero].hero .overlay {
+      background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      border-radius: 0px 0px 25px 25px;
+    }
+
+    div[data-class=hero].hero h1 {
+      color: white;
+      font-size: 1.4em;
+      font-weight: 200;
+      z-index: 1;
+      margin-top: 28vh;
+      margin-bottom: 1vh;
+    }
+
+    div[data-class=hero].hero h1 span {
+      font-weight: 600;
+    }
+
+    div[data-class=hero].hero h2 {
+      margin-top: 0.3vh;
+      font-size: 1.8em;
+      color: white;
+      font-weight: 400;
+      text-transform: uppercase;
+      z-index: 1;
+      text-align: center;
+      line-height: 1.5em;
+    }
+
+    div[data-class=hero].hero h2 span {
+      background: linear-gradient(90deg, #9E181B 0%, #2C4585 100%);
+      border-radius: 7px;
+      padding: 0.3em 0.3em;
+    }
+
+    div[data-class=hero].hero #play {
+      position: relative;
+    }
+
+    div[data-class=hero].hero a {
+      z-index: 1;
+      margin-top: 13vh;
+    }
+
+    div[data-class=hero].hero .arrow {
+      background-image: url("https://goffwd.sirv.com/Mueller/arrow.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 10px;
+      height: 40px;
+      position: relative;
+      margin-top: 5vh;
+      animation: ctaMinimaLArrowOuter 2.5s cubic-bezier(0.55, 0, 0.45, 1) infinite;
+    }
+
+    @keyframes ctaMinimaLArrowOuter {
+      0% {
+        transform: translateY(0);
+      }
+
+      20% {
+        transform: translateY(12px);
+      }
+
+      50% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=hero].hero {
+        border-radius: initial;
+        height: 82vh;
+      }
+
+      div[data-class=hero].hero video {
+        border-radius: initial;
+      }
+
+      div[data-class=hero].hero .overlay {
+        border-radius: initial;
+      }
+
+      div[data-class=hero].hero h1 {
+        font-size: 2.4em;
+        font-weight: 100;
+        margin-top: 23vh;
+      }
+
+      div[data-class=hero].hero h2 {
+        font-size: 2.9em;
+        margin-top: 2vh;
+      }
+
+      div[data-class=hero].hero h2 span {
+        padding: 0.1em 0.3em;
+      }
+
+      div[data-class=hero].hero a {
+        margin-top: 12vh;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=hero].hero a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      div[data-class=hero].hero .arrow {
+        width: 15px;
+        height: 60px;
+        transition: 0.5s ease;
+        margin-top: 7vh;
+      }
+
+      div[data-class=hero].hero .arrow:hover {
+        opacity: 0.5;
+      }
+    }
+
+    @media (max-height: 500px) {
+      div[data-class=hero].hero {
+        height: 140vh;
+      }
+
+      div[data-class=hero].hero h1 {
+        margin-top: 50vh;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      div[data-class=hero].hero {
+        border-radius: initial;
+        height: 82vh;
+      }
+
+      div[data-class=hero].hero video {
+        border-radius: initial;
+      }
+
+      div[data-class=hero].hero .overlay {
+        border-radius: initial;
+      }
+
+      div[data-class=hero].hero h1 {
+        font-size: 2.4em;
+        font-weight: 100;
+        margin-top: 28vh;
+      }
+
+      div[data-class=hero].hero h2 {
+        font-size: 2.9em;
+        margin-top: 2vh;
+      }
+
+      div[data-class=hero].hero h2 span {
+        padding: 0.1em 0.3em;
+      }
+
+      div[data-class=hero].hero a {
+        margin-top: 12vh;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=hero].hero a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      div[data-class=hero].hero .arrow {
+        width: 15px;
+        height: 60px;
+        transition: 0.5s ease;
+        margin-top: 7vh;
+      }
+
+      div[data-class=hero].hero .arrow:hover {
+        opacity: 0.5;
+      }
+    }
+
+    div[data-class=video].video {
+      margin-top: 4vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10vh;
+    }
+
+    div[data-class=video].video h2 {
+      font-size: 1.5em;
+      font-weight: 400;
+      text-align: center;
+      text-transform: uppercase;
+      color: #383838;
+      line-height: 1.3em;
+    }
+
+    div[data-class=video].video h2 span {
+      position: relative;
+      background-color: white;
+      background-clip: padding-box;
+      border-radius: 6px;
+      font-weight: 900;
+      transition: width 500ms ease, color 250ms ease;
+      display: inline-block;
+      width: max-content;
+      color: white;
+      white-space: nowrap;
+    }
+
+    div[data-class=video].video h2 span::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    div[data-class=video].video .video-container {
+      display: grid;
+      width: 100%;
+      grid-template-columns: auto auto auto;
+      grid-template-rows: auto auto;
+      margin-top: 5vh;
+    }
+
+    div[data-class=video].video .video-container .thumb-box {
+      grid-column: 1/4;
+      grid-row: 1/2;
+      width: 100%;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    div[data-class=video].video .video-container .thumb-box .tap {
+      width: 35px;
+      height: 35px;
+      background-image: url("https://goffwd.sirv.com/Mueller/tap.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      z-index: 10;
+      animation-name: touch;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      animation-duration: 2s;
+      pointer-events: none;
+      transition: all 1s ease-out;
+      position: absolute;
+      bottom: 10vh;
+    }
+
+    @keyframes touch {
+      from {
+        transform: translateX(60px);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateX(-60px);
+        opacity: 0;
+      }
+    }
+
+    div[data-class=video].video .video-container .thumb-box .thumb {
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s ease;
+      position: absolute;
+      background-position: center;
+      background-size: cover;
+    }
+
+    div[data-class=video].video .video-container .thumb-box .thumb:nth-child(1) {
+      background-image: url("https://goffwd.sirv.com/Mueller/thumb-6.jpg");
+    }
+
+    div[data-class=video].video .video-container .thumb-box .thumb:nth-child(2) {
+      background-image: url("https://goffwd.sirv.com/Mueller/thumb-5.jpg");
+    }
+
+    div[data-class=video].video .video-container .thumb-box .thumb:nth-child(3) {
+      background-image: url("https://goffwd.sirv.com/Mueller/thumb-4-desk.jpg");
+    }
+
+    div[data-class=video].video .video-container .thumb-box .thumb:nth-child(4) {
+      background-image: url("https://goffwd.sirv.com/Mueller/thumb-3-mob.jpg");
+    }
+
+    div[data-class=video].video .video-container .thumb-box .thumb:nth-child(5) {
+      background-image: url("https://goffwd.sirv.com/Mueller/thumb-2-mob.jpg");
+    }
+
+    div[data-class=video].video .video-container .thumb-box .thumb:nth-child(6) {
+      background-image: url("https://goffwd.sirv.com/Mueller/thumb-video-mob.jpg");
+    }
+
+    div[data-class=video].video .video-container .thumb-box .cursor {
+      width: 60px;
+      height: 60px;
+      background-image: url("https://goffwd.sirv.com/Mueller/play.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transition-duration: 300ms;
+      transition-timing-function: ease-out;
+      pointer-events: none;
+      position: relative;
+    }
+
+    div[data-class=video].video .video-container .box {
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s ease;
+    }
+
+    div[data-class=video].video .video-container .box .arrow {
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 40px;
+      height: 50px;
+    }
+
+    div[data-class=video].video .video-container .box .label {
+      font-size: 1em;
+      font-weight: 900;
+      color: #494949;
+      white-space: nowrap;
+    }
+
+    div[data-class=video].video .video-container .box .title {
+      font-size: 1.5em;
+      font-weight: 200;
+      color: #494949;
+      width: 75%;
+    }
+
+    div[data-class=video].video .video-container .prev {
+      padding-left: 7vw;
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+
+    div[data-class=video].video .video-container .prev .arrow {
+      background-image: url("https://goffwd.sirv.com/Mueller/prev.svg");
+    }
+
+    div[data-class=video].video .video-container .next {
+      align-items: flex-end;
+      padding-right: 7vw;
+      grid-column: 3/4;
+      grid-row: 2/3;
+    }
+
+    div[data-class=video].video .video-container .next .arrow {
+      background-image: url("https://goffwd.sirv.com/Mueller/next.svg");
+    }
+
+    div[data-class=video].video .video-container .controls {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-column: 1/4;
+      grid-row: 2/3;
+      justify-self: center;
+      cursor: pointer;
+    }
+
+    div[data-class=video].video .video-container .controls div {
+      width: 7px;
+      height: 7px;
+      background-color: #494949;
+      border-radius: 50%;
+      margin: 2vw;
+      transition: all 0.5s ease;
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=video].video {
+        margin-top: 10vh;
+      }
+
+      div[data-class=video].video h2 {
+        font-size: 2.5em;
+      }
+
+      div[data-class=video].video h2 span {
+        padding: 0 0.5em;
+      }
+
+      div[data-class=video].video h2 span::after {
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+      }
+
+      div[data-class=video].video .video-container {
+        grid-template-columns: 12.5% 75% 12.5%;
+        margin-top: 10vh;
+      }
+
+      div[data-class=video].video .video-container .thumb-box {
+        height: 80vh;
+        width: 100%;
+        grid-column: 2/3;
+        grid-row: 1/2;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      div[data-class=video].video .video-container .thumb-box .thumb {
+        background-size: cover;
+        position: absolute;
+      }
+
+      div[data-class=video].video .video-container .thumb-box .thumb:nth-child(1) {
+        background-image: url("https://goffwd.sirv.com/Mueller/thumb-6.jpg");
+      }
+
+      div[data-class=video].video .video-container .thumb-box .thumb:nth-child(2) {
+        background-image: url("https://goffwd.sirv.com/Mueller/thumb-5.jpg");
+      }
+
+      div[data-class=video].video .video-container .thumb-box .thumb:nth-child(3) {
+        background-image: url("https://goffwd.sirv.com/Mueller/thumb-4-desk.png");
+      }
+
+      div[data-class=video].video .video-container .thumb-box .thumb:nth-child(4) {
+        background-image: url("https://goffwd.sirv.com/Mueller/thumb-3-desk.jpg");
+      }
+
+      div[data-class=video].video .video-container .thumb-box .thumb:nth-child(5) {
+        background-image: url("https://goffwd.sirv.com/Mueller/thumb-2-desk.jpg");
+      }
+
+      div[data-class=video].video .video-container .thumb-box .thumb:nth-child(6) {
+        background-image: url("https://goffwd.sirv.com/Mueller/video-thumb-desk.jpg");
+      }
+
+      div[data-class=video].video .video-container .thumb-box .cursor {
+        top: calc(50% - 40px);
+        left: calc(50% - 40px);
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        background-image: url("https://goffwd.sirv.com/Mueller/play.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        transition-duration: 300ms;
+        transition-timing-function: ease-out;
+        pointer-events: none;
+      }
+
+      div[data-class=video].video .video-container .box {
+        grid-row: 1/2;
+        align-self: center;
+        justify-self: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=video].video .video-container .box .arrow {
+        transition: all 0.5s ease-in-out;
+      }
+
+      div[data-class=video].video .video-container .box .title {
+        width: 90%;
+        text-align: center;
+      }
+
+      div[data-class=video].video .video-container .prev {
+        padding: 0;
+      }
+
+      div[data-class=video].video .video-container .prev:hover {
+        opacity: 0.8;
+      }
+
+      div[data-class=video].video .video-container .prev:hover .arrow {
+        transform: translateX(-30px);
+      }
+
+      div[data-class=video].video .video-container .next {
+        padding: 0;
+      }
+
+      div[data-class=video].video .video-container .next:hover {
+        opacity: 0.8;
+      }
+
+      div[data-class=video].video .video-container .next:hover .arrow {
+        transform: translateX(30px);
+      }
+
+      div[data-class=video].video .video-container .controls {
+        margin-top: 1vh;
+      }
+
+      div[data-class=video].video .video-container .controls div {
+        width: 12px;
+        height: 12px;
+        margin: 1vw;
+      }
+    }
+
+    div[data-class=products].products {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(176.15deg, rgba(213, 213, 213, 0.57) -2.5%, #C4C4C4 106.19%);
+    }
+
+    div[data-class=products].products .product {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 5vh;
+      z-index: 1;
+    }
+
+    div[data-class=products].products .product:nth-child(1) a {
+      background-color: #E3E3E3 !important;
+    }
+
+    div[data-class=products].products .product:nth-child(2) a {
+      background-color: #D8D8D8 !important;
+    }
+
+    div[data-class=products].products .product:nth-child(3) a {
+      background-color: #CDCDCD !important;
+    }
+
+    div[data-class=products].products .product .block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    div[data-class=products].products .product .block h3 {
+      text-align: center;
+      font-weight: 200;
+      font-style: italic;
+      font-size: 1.2em;
+      color: black;
+    }
+
+    div[data-class=products].products .product .block h3 span {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.8em;
+    }
+
+    div[data-class=products].products .product .block p {
+      text-align: center;
+      font-size: 1em;
+      width: 80%;
+      line-height: 1.5em;
+      margin-top: 2vh;
+    }
+
+    div[data-class=products].products .product .block a {
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 0.5em 1.5em;
+      background-color: #fff;
+      background-clip: padding-box;
+      border-radius: 6px;
+      position: relative;
+      color: black;
+      margin-top: 3vh;
+      font-size: 0.9em;
+    }
+
+    div[data-class=products].products .product .block a::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -2;
+      border-radius: 7px;
+    }
+
+    div[data-class=products].products .product .image {
+      margin-top: 3vh;
+      width: 100%;
+      height: 58vh;
+      object-position: center;
+      object-fit: cover;
+    }
+
+    div[data-class=products].products .product .desk {
+      display: none;
+    }
+
+    div[data-class=products].products .product .fratello {
+      height: 60vh;
+    }
+
+    @media (max-height: 500px) {
+      div[data-class=products].products .product {
+        margin-top: 9vh;
+      }
+
+      div[data-class=products].products .product .image {
+        height: 95vh;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=products].products {
+        margin-top: 8vh;
+        background: white;
+      }
+
+      div[data-class=products].products .product {
+        flex-direction: row;
+        margin-top: 0;
+      }
+
+      div[data-class=products].products .product .block {
+        background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.99) 54.17%, rgba(255, 255, 255, 0) 100%);
+        height: 100%;
+        margin-left: 12.5vw;
+        align-items: flex-start;
+        min-width: 30vw;
+        z-index: 2;
+      }
+
+      div[data-class=products].products .product .block h3 {
+        font-size: 2.5em;
+      }
+
+      div[data-class=products].products .product .block h3 span {
+        font-size: 1em;
+      }
+
+      div[data-class=products].products .product .block p {
+        text-align: left;
+        font-size: 1.2em;
+      }
+
+      div[data-class=products].products .product .block a {
+        background-color: white !important;
+        font-size: 1.2em;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=products].products .product .block a:hover {
+        background-color: transparent !important;
+        color: white;
+      }
+
+      div[data-class=products].products .product .mob {
+        display: none !important;
+      }
+
+      div[data-class=products].products .product .desk {
+        display: block;
+      }
+
+      div[data-class=products].products .product .image {
+        margin-top: 0;
+        height: 65vh;
+        max-height: 600px;
+      }
+
+      div[data-class=products].products .product:nth-child(2) {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+
+      div[data-class=products].products .product:nth-child(2) .block {
+        align-items: flex-end;
+        margin-right: 12.5vw;
+        margin-left: 0;
+      }
+
+      div[data-class=products].products .product:nth-child(2) .block p {
+        text-align: right;
+      }
+    }
+
+    div[data-class=features].features {
+      width: 100%;
+      background-color: #0F181F;
+      border-radius: 25px 25px 0 0;
+      margin-top: -3vh;
+      z-index: 2;
+    }
+
+    div[data-class=features].features .desk {
+      display: none;
+    }
+
+    div[data-class=features].features h2 {
+      font-size: 1.5em;
+      font-weight: 400;
+      line-height: 1.3em;
+      text-align: center;
+      text-transform: uppercase;
+      color: white;
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+      z-index: 1;
+    }
+
+    div[data-class=features].features h2 span {
+      position: relative;
+      background-color: #0F181F;
+      background-clip: padding-box;
+      border-radius: 6px;
+      padding: 0 0.1em;
+    }
+
+    div[data-class=features].features h2 span::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    div[data-class=features].features .video-box {
+      width: 100%;
+      height: 90vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    div[data-class=features].features .video-box .video {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      position: absolute;
+      z-index: 0;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    div[data-class=features].features .video-box .overlay {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, #0F181F 0%, #0f181fec 5%, #0f181f75 15%, #0f181f00 100%);
+      position: absolute;
+      z-index: 1;
+    }
+
+    div[data-class=features].features .video-box h3 {
+      z-index: 1;
+      color: white;
+      text-align: center;
+      font-size: 1.8em;
+    }
+
+    div[data-class=features].features .video-box p {
+      z-index: 1;
+      color: white;
+      text-align: center;
+      font-size: 0.9em;
+      width: 90%;
+      line-height: 1.5em;
+      font-weight: 200;
+      margin-top: 2vh;
+    }
+
+    div[data-class=features].features .video-box a {
+      z-index: 1;
+      position: absolute;
+      bottom: 15vh;
+    }
+
+    @media (max-height: 500px) {
+      div[data-class=features].features .video-box {
+        height: 170vh;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=features].features {
+        border-radius: initial;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      div[data-class=features].features .mob {
+        display: none;
+      }
+
+      div[data-class=features].features .desk {
+        display: block;
+      }
+
+      div[data-class=features].features h2 {
+        font-size: 2.7em;
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+      }
+
+      div[data-class=features].features h2 span::after {
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+      }
+
+      div[data-class=features].features h3 {
+        z-index: 1;
+        color: white;
+        text-align: center;
+        font-size: 2.2em;
+        margin-bottom: 2vh;
+      }
+
+      div[data-class=features].features p {
+        z-index: 1;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        width: 90%;
+        line-height: 1.5em;
+        font-weight: 200;
+        margin-top: 2vh;
+        max-width: 800px;
+        margin-bottom: 3vh;
+      }
+
+      div[data-class=features].features .video-box {
+        width: 75vw;
+        height: 70vh;
+        margin-bottom: 15vh;
+        overflow: hidden;
+      }
+
+      div[data-class=features].features .video-box .video {
+        width: 100% !important;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      div[data-class=features].features .video-box .overlay {
+        background: linear-gradient(0deg, #00000093 0%, rgba(0, 0, 0, 0) 100%);
+      }
+
+      div[data-class=features].features .video-box a {
+        margin-top: 45vh;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=features].features .video-box a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    div[data-class=overview].overview {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #0F181F;
+      position: relative;
+    }
+
+    div[data-class=overview].overview h2 {
+      font-size: 1.5em;
+      font-weight: 400;
+      line-height: 1.3em;
+      text-align: center;
+      text-transform: uppercase;
+      color: white;
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+    }
+
+    div[data-class=overview].overview h2 span {
+      position: relative;
+      background-color: #0F181F;
+      background-clip: padding-box;
+      border-radius: 6px;
+      padding: 0.2em 0.3em;
+      z-index: 10;
+    }
+
+    div[data-class=overview].overview h2 span::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    div[data-class=overview].overview .menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 70%;
+      padding: 1vh 0 5vh 0;
+    }
+
+    div[data-class=overview].overview .menu button {
+      background-color: transparent;
+      border: none;
+      color: #c4c4c4;
+      font-weight: 400;
+      font-size: 1em;
+      font-family: "Mangerica" !important;
+      outline: none;
+      box-shadow: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 2px;
+      transition: border 0.5s ease;
+    }
+
+    div[data-class=overview].overview .acabamentos {
+      width: 65%;
+      height: 60vh;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    div[data-class=overview].overview .acabamentos .tap {
+      width: 35px;
+      height: 35px;
+      background-image: url("https://goffwd.sirv.com/Mueller/tap.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      z-index: 10;
+      animation-name: touch;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      animation-duration: 2s;
+      pointer-events: none;
+      transition: all 1s ease-out;
+    }
+
+    @keyframes touch {
+      from {
+        transform: translateX(60px);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateX(-60px);
+        opacity: 0;
+      }
+    }
+
+    div[data-class=overview].overview .acabamentos .card {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      transition: transform 0.5s ease;
+      transform-origin: center;
+      border-radius: 25px;
+      overflow: hidden;
+    }
+
+    div[data-class=overview].overview .acabamentos .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 25px;
+      position: absolute;
+    }
+
+    div[data-class=overview].overview .acabamentos .card .overlay {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 44.15%, rgba(0, 0, 0, 0.784) 115.43%);
+      border-radius: 25px;
+    }
+
+    div[data-class=overview].overview .acabamentos .card .name {
+      position: relative;
+      color: white;
+      margin-top: 42vh;
+      text-transform: uppercase;
+    }
+
+    div[data-class=overview].overview .acabamentos .card a {
+      position: absolute;
+      color: white;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid white;
+      bottom: 7vh;
+      padding: 5px 10px;
+      border-radius: 7px;
+    }
+
+    div[data-class=overview].overview .slider-desk {
+      display: none;
+    }
+
+    div[data-class=overview].overview .white-bg {
+      width: 100%;
+      height: 25vh;
+      background-color: white;
+      position: absolute;
+      bottom: 0;
+      z-index: 0;
+    }
+
+    @media (max-height: 500px) {
+      div[data-class=overview].overview .acabamentos {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=overview].overview .tap {
+        display: none;
+      }
+
+      div[data-class=overview].overview h2 {
+        font-size: 2.5em;
+      }
+
+      div[data-class=overview].overview h2 span {
+        padding: 0.1em 0.3em;
+      }
+
+      div[data-class=overview].overview h2 span::after {
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+      }
+
+      div[data-class=overview].overview .menu {
+        width: 25%;
+      }
+
+      div[data-class=overview].overview .menu button {
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=overview].overview .menu button:hover {
+        opacity: 0.7;
+      }
+
+      div[data-class=overview].overview .acabamentos {
+        display: none;
+      }
+
+      div[data-class=overview].overview .slider-desk {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 55vh;
+        width: 85vw;
+        z-index: 10;
+        margin-top: 5vh;
+        overflow: hidden;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        transition: transform 0.5s ease;
+        padding: 10px;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box .card-desk {
+        width: 16vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box .card-desk img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 25px;
+        max-width: 384px;
+        max-height: 662px;
+        position: absolute;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box .card-desk .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 44.15%, rgba(0, 0, 0, 0.784) 115.43%);
+        border-radius: 25px;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box .card-desk .name {
+        position: absolute;
+        color: white;
+        bottom: 16vh;
+        text-transform: uppercase;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box .card-desk a {
+        font-size: 1em;
+        position: absolute;
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid white;
+        bottom: 7vh;
+        padding: 5px 10px;
+        border-radius: 7px;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box .card-desk a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box:nth-child(2) {
+        justify-content: center;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box:nth-child(2) .card-desk {
+        margin: 0 1vw;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box:nth-child(3) {
+        justify-content: center;
+      }
+
+      div[data-class=overview].overview .slider-desk .card-box:nth-child(3) .card-desk {
+        margin: 0 1vw;
+      }
+
+      div[data-class=overview].overview .white-bg {
+        background-color: #F5F5F5;
+      }
+    }
+
+    div[data-class=comments].comments {
+      width: 100%;
+      background-color: white;
+      z-index: 0;
+    }
+
+    div[data-class=comments].comments h2 {
+      font-size: 2em;
+      font-weight: 400;
+      text-align: center;
+      color: black;
+      margin-top: 10vh;
+      z-index: 1;
+    }
+
+    div[data-class=comments].comments h2 span {
+      position: relative;
+      background-color: white;
+      background-clip: padding-box;
+      border-radius: 6px;
+      padding: 0.2em 0.3em;
+    }
+
+    div[data-class=comments].comments h2 span::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    div[data-class=comments].comments .quote-img {
+      background-image: url("https://goffwd.sirv.com/Mueller/quote.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 10vw;
+      height: 4vh;
+      margin-top: 5vh;
+      margin-left: 15%;
+    }
+
+    div[data-class=comments].comments .quote-box {
+      width: 100%;
+      position: relative;
+      height: 135px;
+      width: 80%;
+      margin: 0 auto;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    div[data-class=comments].comments .quote-box .quote {
+      width: 100%;
+      padding: 3vh 0;
+      position: absolute;
+      transition: transform 0.5s ease;
+    }
+
+    div[data-class=comments].comments .quote-box .quote .user {
+      display: flex;
+      padding: 0 5vw;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    div[data-class=comments].comments .quote-box .quote .user .avatar {
+      width: 30px;
+      height: 30px;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    div[data-class=comments].comments .quote-box .quote .user span {
+      color: #494949;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    div[data-class=comments].comments .quote-box .quote p {
+      font-weight: 200;
+      padding: 0 5vw;
+    }
+
+    div[data-class=comments].comments .quote-box .quote:nth-child(1) .user .avatar {
+      background-image: url("https://goffwd.sirv.com/Mueller/avatar-geisianypralt.png");
+    }
+
+    div[data-class=comments].comments .quote-box .quote:nth-child(2) .user .avatar {
+      background-image: url("https://goffwd.sirv.com/Mueller/avatar-flowers_sy.png");
+    }
+
+    div[data-class=comments].comments .quote-box .quote:nth-child(3) .user .avatar {
+      background-image: url("https://goffwd.sirv.com/Mueller/avatar-rosana.diasdasilva.png");
+    }
+
+    div[data-class=comments].comments .controls {
+      width: 100%;
+      padding: 1vh 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    div[data-class=comments].comments .controls div {
+      width: 0.5em;
+      height: 0.5em;
+      background-color: #494949;
+      border-radius: 50%;
+      margin: 2vw;
+      transition: all 0.5s ease;
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=comments].comments {
+        background-color: #F5F5F5;
+        padding-top: 5vh;
+        padding-bottom: 10vh;
+      }
+
+      div[data-class=comments].comments h2 {
+        font-size: 2.7em;
+        margin-bottom: 7vh;
+      }
+
+      div[data-class=comments].comments h2 span {
+        background-color: #F5F5F5;
+        padding: 0 0.5em;
+      }
+
+      div[data-class=comments].comments h2 span::after {
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+      }
+
+      div[data-class=comments].comments .quote-img {
+        display: none;
+      }
+
+      div[data-class=comments].comments .quote-box {
+        margin-top: 5vh;
+        width: 70vw;
+        height: 190px;
+        justify-content: space-between;
+      }
+
+      div[data-class=comments].comments .quote-box .quote {
+        position: static;
+        background-color: white;
+        border-radius: 20px;
+        width: 30%;
+        padding: 0 2vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      div[data-class=comments].comments .quote-box .quote .user {
+        padding: 0;
+      }
+
+      div[data-class=comments].comments .quote-box .quote p {
+        padding: 0;
+      }
+
+      div[data-class=comments].comments .quote-box .quote span {
+        padding: 0;
+      }
+
+      div[data-class=comments].comments .controls {
+        display: none;
+      }
+    }
+
+    div[data-class=filter-section].filter-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 7vh;
+      padding-bottom: 5px;
+    }
+
+    div[data-class=filter-section].filter-section h2 {
+      font-size: 2em;
+      font-weight: 400;
+      text-align: center;
+      color: black;
+      margin-top: 5vh;
+      z-index: 1;
+    }
+
+    div[data-class=filter-section].filter-section h2 span {
+      position: relative;
+      background-color: white;
+      background-clip: padding-box;
+      border-radius: 6px;
+      padding: 0.2em 0.3em;
+    }
+
+    div[data-class=filter-section].filter-section h2 span::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    div[data-class=filter-section].filter-section .instruction {
+      display: none;
+    }
+
+    div[data-class=filter-section].filter-section h3 {
+      width: 70vw;
+      font-weight: 200;
+      font-size: 1em;
+      color: black;
+      margin-top: 2vh;
+      margin-bottom: 1vh;
+      display: inline;
+    }
+
+    div[data-class=filter-section].filter-section .filter-desk {
+      display: none;
+    }
+
+    div[data-class=filter-section].filter-section .filter-name {
+      font-weight: 600;
+      font-size: 1.2em;
+      margin-top: 2vh;
+    }
+
+    div[data-class=filter-section].filter-section .filter-box {
+      width: 100%;
+      position: relative;
+      margin-top: 1vh;
+      height: 360px;
+    }
+
+    div[data-class=filter-section].filter-section .filter-box .filter {
+      width: 100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      transition: transform 0.5s ease;
+    }
+
+    div[data-class=filter-section].filter-section .filter-box .filter video {
+      object-position: center;
+      object-fit: cover;
+      border-radius: 15px;
+      width: 190px;
+      height: 349.66px;
+      position: relative;
+      top: 0;
+    }
+
+    div[data-class=filter-section].filter-section .filter-box .filter img {
+      position: absolute;
+      object-position: center;
+      width: 190px;
+      height: 349.66px;
+    }
+
+    div[data-class=filter-section].filter-section .controls {
+      width: 100%;
+      padding: 0.5vh 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    div[data-class=filter-section].filter-section .controls div {
+      width: 0.5em;
+      height: 0.5em;
+      background-color: #494949;
+      border-radius: 50%;
+      margin: 2vw;
+      transition: all 0.5s ease;
+    }
+
+    div[data-class=filter-section].filter-section a {
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 0.5em 1.5em;
+      background-color: white;
+      background-clip: padding-box;
+      border-radius: 6px;
+      position: relative;
+      color: black;
+      margin-top: 1vh;
+      font-size: 1em;
+    }
+
+    div[data-class=filter-section].filter-section a::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=filter-section].filter-section {
+        padding-top: 3vh;
+        padding-bottom: 10vh;
+        margin-top: 0;
+        background-color: #F5F5F5;
+      }
+
+      div[data-class=filter-section].filter-section h2 {
+        font-size: 2.7em;
+        margin-bottom: 3vh;
+      }
+
+      div[data-class=filter-section].filter-section h2 span {
+        background-color: #F5F5F5;
+        padding: 0 0.5em;
+      }
+
+      div[data-class=filter-section].filter-section h2 span::after {
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+      }
+
+      div[data-class=filter-section].filter-section h3 {
+        width: 70vw;
+        font-weight: 200;
+        font-size: 1.8em;
+        color: black;
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+        display: inline;
+        text-align: center;
+      }
+
+      div[data-class=filter-section].filter-section .instruction {
+        width: 70vw;
+        font-size: 1.2em;
+        font-weight: 200;
+        display: inline;
+      }
+
+      div[data-class=filter-section].filter-section .instruction span {
+        font-weight: 400;
+        margin-right: 20px;
+        width: 12px;
+        display: inline-block;
+      }
+
+      div[data-class=filter-section].filter-section .filter-name {
+        display: none;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk {
+        width: 70vw;
+        margin-top: 5vh;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter {
+        display: flex;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .image {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .image video {
+        width: 16vw;
+        height: auto;
+        border-radius: 15px;
+        object-fit: cover;
+        position: relative;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .image img {
+        position: absolute;
+        width: 16vw;
+        height: auto;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .info .conector {
+        width: 8vw;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .info .code {
+        width: 8vw;
+        margin-left: 4vw;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .info p {
+        width: 175px;
+        margin-left: 4vw;
+        font-size: 1.3em;
+        font-weight: 200;
+        margin-bottom: 8px;
+      }
+
+      div[data-class=filter-section].filter-section .filter-desk .filter .info p span {
+        font-weight: 500;
+      }
+
+      div[data-class=filter-section].filter-section .filter-box {
+        display: none;
+      }
+
+      div[data-class=filter-section].filter-section .controls {
+        display: none;
+      }
+
+      div[data-class=filter-section].filter-section a {
+        display: none;
+      }
+    }
+
+    div[data-class=cupom].cupom {
+      width: 100%;
+      position: relative;
+      margin-top: 5vh;
+      padding-top: 10vh;
+      height: 68vh;
+      max-height: 500px;
+      background: linear-gradient(91.17deg, #9E181B 0%, #2C4585 102.41%);
+      box-sizing: initial;
+    }
+
+    div[data-class=cupom].cupom img {
+      width: 100%;
+      height: 40vh;
+      max-height: 300px;
+      object-fit: cover;
+      object-position: right;
+      position: absolute;
+      z-index: 0;
+      top: 5vh;
+    }
+
+    div[data-class=cupom].cupom .desk {
+      display: none !important;
+    }
+
+    div[data-class=cupom].cupom .call {
+      position: relative;
+      z-index: 1;
+      font-size: 5vw;
+      margin-left: 7vw;
+      margin-bottom: 0.5vh;
+      line-height: 1.3em;
+      width: max-content;
+      text-transform: uppercase;
+      background-image: linear-gradient(91.68deg, #9E181B 3.99%, #2C4585 99.19%);
+      color: white;
+      border-radius: 5px;
+      padding: 0 3px;
+      font-weight: 900;
+      line-height: 1.5em;
+    }
+
+    div[data-class=cupom].cupom .text {
+      position: relative;
+      z-index: 1;
+      color: #494949;
+      font-size: 4vw;
+      margin-top: 3vh;
+      display: inline-block;
+      margin-left: 7vw;
+      line-height: 1.3em;
+      text-transform: uppercase;
+    }
+
+    div[data-class=cupom].cupom .text span {
+      font-weight: 900;
+    }
+
+    div[data-class=cupom].cupom .form-box {
+      bottom: 4vh;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 7vw;
+      position: absolute;
+    }
+
+    div[data-class=cupom].cupom .form-box .sub-text {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 3.5vw;
+      margin-bottom: 2vh;
+      line-height: 1.3em;
+      font-weight: 600;
+    }
+
+    div[data-class=cupom].cupom .form-box .sub-text span {
+      border-radius: 5px;
+      padding: 0 3px;
+      font-size: 1em;
+      font-weight: 200;
+      line-height: 1em;
+    }
+
+    div[data-class=cupom].cupom .form-box .sub-text .gradient {
+      background-image: linear-gradient(91.68deg, #9E181B 3.99%, #2C4585 99.19%);
+    }
+
+    div[data-class=cupom].cupom .form-box .email {
+      border: 1px solid white;
+      border-radius: 25px;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 5vw;
+      margin-bottom: 3vh;
+      height: 1.8em;
+      padding: 0 5vw;
+      outline: none;
+      transition: all 0.5s ease;
+    }
+
+    div[data-class=cupom].cupom .form-box .send {
+      background-color: transparent;
+      color: white;
+      pointer-events: none;
+    }
+
+    div[data-class=cupom].cupom .form-box .box {
+      display: flex;
+      justify-content: space-between;
+      height: 8vh;
+    }
+
+    div[data-class=cupom].cupom .form-box .box .term-box {
+      display: flex;
+      flex-direction: row;
+      width: 70vw;
+      transition: all 0.5s ease;
+    }
+
+    div[data-class=cupom].cupom .form-box .box .term-box .check-box {
+      display: inline-block;
+    }
+
+    div[data-class=cupom].cupom .form-box .box .term-box span {
+      color: white;
+      display: block;
+      margin-left: 5px;
+      font-size: 3vw;
+    }
+
+    div[data-class=cupom].cupom .form-box .box button {
+      display: block;
+      position: relative;
+      font-family: "Mangerica" !important;
+      color: white;
+      background-color: transparent;
+      border: 1px solid white;
+      font-size: 5vw;
+      border-radius: 25px;
+      text-transform: uppercase;
+      height: 2em;
+      width: 100%;
+      transition: all 0.5s ease;
+    }
+
+    div[data-class=cupom].cupom .form-box .box .toast {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      color: #9E181B;
+      border-radius: 25px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+
+    div[data-class=cupom].cupom .form-box .box .copy {
+      background-color: white;
+      color: #9E181B;
+      border-radius: 25px;
+    }
+
+    div[data-class=cupom].cupom .form-box .box .copy::before {
+      content: "*clique para copiar";
+      position: absolute;
+      left: 20px;
+      bottom: -18px;
+      font-size: 8px;
+      color: white;
+    }
+
+    div[data-class=cupom].cupom #cupom-code {
+      opacity: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    @media (max-height: 500px) {
+      div[data-class=cupom].cupom {
+        height: 140vh;
+      }
+
+      div[data-class=cupom].cupom img {
+        height: 80vh;
+      }
+
+      div[data-class=cupom].cupom .call {
+        margin-top: 12vh;
+      }
+
+      div[data-class=cupom].cupom .text {
+        margin-top: 5vh;
+      }
+
+      div[data-class=cupom].cupom .sub-text {
+        margin-top: 3vh;
+      }
+
+      div[data-class=cupom].cupom .form-box {
+        bottom: 7vh;
+      }
+
+      div[data-class=cupom].cupom .form-box .email {
+        margin-bottom: 5vh;
+      }
+
+      div[data-class=cupom].cupom .form-box .box {
+        height: 14vh;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=cupom].cupom {
+        margin-top: 0;
+        padding-top: 0;
+        background-color: #F5F5F5;
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      div[data-class=cupom].cupom img {
+        height: 70vh;
+        max-height: 600px;
+        top: 0;
+        object-fit: cover;
+      }
+
+      div[data-class=cupom].cupom .call {
+        display: inline;
+        width: max-content;
+        font-size: 1.8em;
+        margin-top: 8vh;
+      }
+
+      div[data-class=cupom].cupom .text {
+        margin-top: 0.5vh;
+        display: inline;
+        font-size: 1.8em;
+      }
+
+      div[data-class=cupom].cupom .form-box {
+        position: relative;
+        bottom: unset;
+        margin-top: 5vh;
+        z-index: 1;
+      }
+
+      div[data-class=cupom].cupom .form-box .sub-text {
+        position: relative;
+        z-index: 1;
+        font-size: 1.2em;
+        margin-top: 3vh;
+        display: inline;
+        line-height: 1.3em;
+        font-weight: 600;
+        color: #494949;
+      }
+
+      div[data-class=cupom].cupom .form-box .sub-text span {
+        border-radius: 5px;
+        padding: 0 3px;
+        font-size: 1em;
+        font-weight: 200;
+        line-height: 1em;
+      }
+
+      div[data-class=cupom].cupom .form-box .sub-text .gradient {
+        background-image: linear-gradient(91.68deg, #9E181B 3.99%, #2C4585 99.19%);
+      }
+
+      div[data-class=cupom].cupom .form-box .email {
+        border: 1px solid #494949;
+        width: 20vw;
+        padding: 0 1vw;
+        border-radius: 10px;
+        font-size: 1.4em;
+        margin-bottom: 1vh;
+        display: block;
+        margin-top: 5vh;
+      }
+
+      div[data-class=cupom].cupom .form-box .send {
+        color: #494949;
+      }
+
+      div[data-class=cupom].cupom .form-box .box {
+        flex-direction: column;
+        height: unset;
+      }
+
+      div[data-class=cupom].cupom .form-box .box .term-box span {
+        color: #494949;
+        font-size: 1em;
+      }
+
+      div[data-class=cupom].cupom .form-box .box button {
+        margin-left: 0;
+        background-color: white;
+        color: #494949;
+        border-radius: 7px;
+        border: none;
+        width: 12vw;
+        font-size: 1.2em;
+        cursor: pointer;
+        margin-top: 3vh;
+      }
+
+      div[data-class=cupom].cupom .form-box .box button::after {
+        position: absolute;
+        top: -1px;
+        bottom: -1px;
+        left: -1px;
+        right: -1px;
+        background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+        content: "";
+        z-index: -2;
+        border-radius: 8px;
+      }
+
+      div[data-class=cupom].cupom .form-box .box button:hover {
+        background-color: transparent;
+        color: white;
+      }
+
+      div[data-class=cupom].cupom .form-box .box .toast {
+        border-radius: 7px;
+      }
+
+      div[data-class=cupom].cupom .form-box .box .copy {
+        background-color: white;
+        color: #9E181B;
+        border-radius: 7px;
+      }
+
+      div[data-class=cupom].cupom .mob {
+        display: none !important;
+      }
+
+      div[data-class=cupom].cupom .desk {
+        display: block !important;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      div[data-class=cupom].cupom {
+        margin-top: 0;
+        padding-top: 0;
+        background-color: #F5F5F5;
+        height: 65vh;
+        max-height: 700px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      div[data-class=cupom].cupom img {
+        height: 60vh;
+        top: 0;
+        object-fit: cover;
+        max-height: 600px;
+      }
+
+      div[data-class=cupom].cupom .call {
+        display: inline;
+        width: max-content;
+        font-size: 2.3em;
+      }
+
+      div[data-class=cupom].cupom .text {
+        margin-top: 0.5vh;
+        display: inline;
+        font-size: 2.3em;
+      }
+
+      div[data-class=cupom].cupom .sub-text {
+        position: relative;
+        z-index: 1;
+        font-size: 1.6em;
+        margin-top: 3vh;
+        display: inline;
+        line-height: 1.3em;
+        font-weight: 600;
+      }
+
+      div[data-class=cupom].cupom .sub-text span {
+        border-radius: 5px;
+        padding: 0 3px;
+        font-size: 1em;
+        font-weight: 200;
+        line-height: 1em;
+      }
+
+      div[data-class=cupom].cupom .sub-text .gradient {
+        background-image: linear-gradient(91.68deg, #9E181B 3.99%, #2C4585 99.19%);
+      }
+
+      div[data-class=cupom].cupom .form-box {
+        position: relative;
+        bottom: unset;
+        margin-top: 3vh;
+        z-index: 1;
+      }
+
+      div[data-class=cupom].cupom .form-box .email {
+        border: 1px solid #494949;
+        width: 20vw;
+        padding: 0 1vw;
+        border-radius: 10px;
+        font-size: 1.4em;
+      }
+
+      div[data-class=cupom].cupom .form-box .box {
+        flex-direction: column;
+      }
+
+      div[data-class=cupom].cupom .form-box .box .term-box span {
+        color: #494949;
+      }
+
+      div[data-class=cupom].cupom .form-box .box button {
+        margin-left: 0;
+        background-color: white;
+        color: #494949;
+        border-radius: 7px;
+        border: none;
+        width: 12vw;
+        font-size: 1.2em;
+      }
+
+      div[data-class=cupom].cupom .form-box .box button::after {
+        position: absolute;
+        top: -1px;
+        bottom: -1px;
+        left: -1px;
+        right: -1px;
+        background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+        content: "";
+        z-index: -2;
+        border-radius: 8px;
+      }
+
+      div[data-class=cupom].cupom .form-box .box button:hover {
+        background-color: transparent !important;
+        color: white;
+      }
+
+      div[data-class=cupom].cupom button {
+        margin-left: 12.5vw;
+        margin-top: 3vh;
+        transition: all 0.5s ease;
+        font-size: 1.2em;
+        position: relative;
+        bottom: unset;
+        width: 200px;
+        outline: none;
+      }
+
+      div[data-class=cupom].cupom button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      div[data-class=cupom].cupom .mob {
+        display: none !important;
+      }
+
+      div[data-class=cupom].cupom .desk {
+        display: block !important;
+      }
+    }
+
+    div[data-class=comparative].comparative {
+      width: 100%;
+      margin-top: 5vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+    }
+
+    div[data-class=comparative].comparative h2 {
+      font-size: 1.4em;
+      font-weight: 400;
+      text-align: center;
+      color: black;
+    }
+
+    div[data-class=comparative].comparative h2 span {
+      position: relative;
+      background-color: white;
+      background-clip: padding-box;
+      border-radius: 6px;
+      padding: 0 0.2em;
+      font-weight: 900;
+    }
+
+    div[data-class=comparative].comparative h2 span::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    div[data-class=comparative].comparative table {
+      width: 90%;
+      margin-top: 4vh;
+      z-index: 1;
+    }
+
+    div[data-class=comparative].comparative table td {
+      vertical-align: middle;
+      font-size: 10px;
+    }
+
+    div[data-class=comparative].comparative table th.title {
+      text-align: center;
+      vertical-align: middle;
+      padding: 0;
+      padding-bottom: 2vh;
+    }
+
+    div[data-class=comparative].comparative table th.title span {
+      text-align: center;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: 1px solid #c4c4c4;
+      border-radius: 10px;
+      padding: 4px 4px;
+      font-size: 11px;
+      display: inline-block;
+    }
+
+    div[data-class=comparative].comparative table th.title:nth-child(1) {
+      text-align: left;
+    }
+
+    div[data-class=comparative].comparative table th.title:nth-child(1) span {
+      text-align: left;
+    }
+
+    div[data-class=comparative].comparative table tbody tr {
+      height: 80px;
+    }
+
+    div[data-class=comparative].comparative table tbody tr td {
+      max-width: 20vw;
+      padding: 0;
+    }
+
+    div[data-class=comparative].comparative table tbody tr td .cta-box {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div[data-class=comparative].comparative table tbody tr td .cta-box a {
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 0.5em 1em;
+      background-color: #fff;
+      background-clip: padding-box;
+      border-radius: 6px;
+      position: relative;
+      color: black;
+      font-size: 0.9em;
+    }
+
+    div[data-class=comparative].comparative table tbody tr td .cta-box a::after {
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background: linear-gradient(90deg, #9E181B 4.27%, #2C4585 96.15%);
+      content: "";
+      z-index: -2;
+      border-radius: 7px;
+    }
+
+    div[data-class=comparative].comparative table tbody .name {
+      width: 25vw;
+    }
+
+    div[data-class=comparative].comparative table tbody .check {
+      width: 100%;
+      height: 15px;
+      background-image: url("https://goffwd.sirv.com/Mueller/check.svg");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    div[data-class=comparative].comparative table tbody .cinco-bocas::after {
+      content: "(Na versão 5 bocas)";
+      position: absolute;
+      bottom: -28px;
+      width: 100%;
+      right: 0;
+      text-align: center;
+      font-size: 9px;
+    }
+
+    div[data-class=comparative].comparative table tbody .info {
+      font-size: 8px;
+    }
+
+    div[data-class=comparative].comparative table tbody .times {
+      width: 15px;
+      height: 15px;
+      background-image: url("https://goffwd.sirv.com/Mueller/times.svg");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+    }
+
+    div[data-class=comparative].comparative table tbody span {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+
+    @media (min-width: 1024px) {
+      div[data-class=comparative].comparative {
+        background-color: #F5F5F5;
+        margin-top: 0;
+        padding-top: 30vh;
+        padding-bottom: 10vh;
+      }
+
+      div[data-class=comparative].comparative h2 {
+        font-size: 2.7em;
+      }
+
+      div[data-class=comparative].comparative h2 span {
+        background-color: #F5F5F5;
+        z-index: 1;
+      }
+
+      div[data-class=comparative].comparative h2 span::after {
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+      }
+
+      div[data-class=comparative].comparative table {
+        margin-top: 10vh;
+        width: 70vw;
+        font-size: 18px;
+      }
+
+      div[data-class=comparative].comparative table td {
+        font-size: 0.9em;
+      }
+
+      div[data-class=comparative].comparative table td .cta-box a {
+        background-color: #c4c4c4;
+        transition: all 0.5s ease;
+      }
+
+      div[data-class=comparative].comparative table td .cta-box a:hover {
+        background-color: transparent;
+        color: white;
+      }
+
+      div[data-class=comparative].comparative table th.title span {
+        display: inline-block;
+        font-size: 1em;
+        font-weight: 700;
+      }
+
+      div[data-class=comparative].comparative table tbody tr {
+        height: 70px;
+      }
+
+      div[data-class=comparative].comparative table tbody .name {
+        width: 20vw;
+      }
+
+      div[data-class=comparative].comparative table tbody .check {
+        width: 100%;
+        height: 18px;
+      }
+
+      div[data-class=comparative].comparative table tbody .times {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /*# sourceMappingURL=all.css.map */
+  </style>
+
+  <div id="play" data-class="main" class="main">
+
+    <div data-class="hero" class="hero">
+      <video playsinline class="s-video video-bg" controlslist="nodownload" width="100%" height="100%"
+        poster="https://goffwd.sirv.com/Mueller/hero-poster.jpg" muted preload="auto" loop=""
+        data-loaded-metadata="true" src="https://goffwd.sirv.com/Mueller/hero-maes.mp4">
+      </video>
+
+      <div class="overlay">
+
+      </div>
+
+      <h1>Fogão Mesa de Vidro é <span>Mueller</span></h1>
+
+      <h2>Mais escolhas <span>para você</span></h2>
+
+      <a style="display: none;" target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?mesa=189"
+        data-class="cta-white" class="cta-white">Conheça as opções</a>
+
+      <div class="arrow"></div>
+
+    </div>
+
+    <div data-class="video" class="video">
+      <h2>Mais escolhas para você <br> <span class="video-call">aproveitar</span></h2>
+
+      <div class="video-container">
+        <div class="thumb-box">
+          <div class="thumb"></div>
+          <div class="thumb"></div>
+          <div class="thumb"></div>
+          <div class="thumb"></div>
+          <div class="thumb"></div>
+          <div class="thumb"></div>
+          <div class="cursor"></div>
+        </div>
+
+        <div class="prev box" id="prev">
+          <div class="arrow"></div>
+          <span class="label">Anterior</span>
+          <h3 class="title"></h3>
+        </div>
+
+        <div class="controls">
+          <div class="control"></div>
+          <div class="control"></div>
+          <div class="control"></div>
+          <div class="control"></div>
+          <div class="control"></div>
+          <div class="control"></div>
+        </div>
+
+        <div class="next box" id="next">
+          <div class="arrow"></div>
+          <span class="label">Próximo</span>
+          <h3 class="title"></h3>
+        </div>
+      </div>
+
+    </div>
+
+    <div data-class="products" class="products">
+      <div class="product">
+        <div class="block">
+          <h3 class="name">Linha <br class="mob"> <span>Piacere Vetro</span></h3>
+
+          <p><span class="bold">Elegância e praticidade:</span> seu prazer de cozinhar para a família merece
+            um fogão mesa de vidro com diferenciais e detalhes únicos. <span class="bold">Os fogões Mueller
+              Piacere Vetro</span> são elegantes e
+            versáteis, perfeitos para dar vida às suas melhores receitas. Disponível em 4 e 5 bocas, nas
+            cores inox, preto e branco.</p>
+
+          <a href="#overview" data-class="cta-gradient" class="cta-gradient">Conheça os modelos</a>
+
+        </div>
+        <img class="image mob" src="https://goffwd.sirv.com/Mueller/bg-piacere-mob.png" load="lazy" alt="">
+        <img class="image desk" src="https://goffwd.sirv.com/Mueller/bg-piacere-desk.jpg" load="lazy" alt="">
+      </div>
+
+      <div class="product">
+        <div class="block">
+          <h3 class="name">Linha <br class="mob"><span>Decorato Vetro</span></h3>
+
+          <p><span class="bold">Perfeito para impressionar:</span> com um design exclusivo e moderno, <span
+              class="bold"> os fogões Mueller mesa de vidro Decorato</span>
+            são a escolha mais completa para quem busca uma cozinha sofisticada e funcional para uma
+            performance altamente eficiente. Disponível em 4 e 5 bocas, nas cores inox com vidros espelhados
+            e preto</p>
+
+          <a href="#overview" data-class="cta-gradient" class="cta-gradient">Conheça os modelos</a>
+        </div>
+
+        <img class="image mob" src="https://goffwd.sirv.com/Mueller/bg-decorato-mob.png" load="lazy" alt="">
+        <img class="image desk" src="https://goffwd.sirv.com/Mueller/bg-decorato-desk.jpg" load="lazy" alt="">
+
+      </div>
+
+      <div class="product">
+        <div class="block">
+          <h3 class="name">Linha <br class="mob"> <span>Fratello Vetro</span></h3>
+
+          <p><span class="bold">Prepare as melhores receitas:</span> desenvolvido para trazer mais agilidade e
+            facilidade no dia a dia,
+            e mais modernidade para a sua cozinha, <span class="bold">os fogões Mueller mesa de vidro
+              Fratello</span> possuem design único
+            com painel ergonômico. Disponível em 4 e 5 bocas, nas cores grafite, preto e branco</p>
+
+          <a href="#overview" data-class="cta-gradient" class="cta-gradient">Conheça os modelos</a>
+        </div>
+
+        <img class="image mob" src="https://goffwd.sirv.com/Mueller/bg-frattelo-mob.png" load="lazy" alt="">
+        <img class="image desk" src="https://goffwd.sirv.com/Mueller/bg-fratello-desk.jpg " load="lazy" alt="">
+      </div>
+    </div>
+
+    <div data-class="features" class="features">
+      <h2>
+        Detalhes que <br> fazem a <span>diferença</span>
+      </h2>
+
+      <h3 class="desk">Mesa de vidro temperado</h3>
+      <p class="desk">Resistente e linda, a mesa de vidro temperado é fácil e rápida de limpar. Feita para você
+        aproveitar cada momento do seu dia na cozinha e ter mais tempo para saborear a sua receita favorita</p>
+
+      <div class="video-box">
+
+        <video id="feat-1" poster="https://goffwd.sirv.com/Mueller/mesa-de-vidro-temperado-poster.jpg" playsinline
+          controlslist="nodownload" width="100%" height="100%" muted preload="auto" loop="" data-loaded-metadata="true"
+          class="video video-bg" src="https://goffwd.sirv.com/Mueller/mesa-de-vidro-temperado-min.mp4"
+          load="lazy"></video>
+
+        <div class="overlay"></div>
+
+        <h3 class="mob">Mesa de vidro temperado</h3>
+        <p class="mob">Resistente e linda, a mesa de vidro temperado é fácil e rápida de limpar. Feita para você
+          aproveitar cada momento do seu dia na cozinha e ter mais tempo para saborear a sua receita favorita
+        </p>
+
+        <a href="#overview" data-class="cta-white" class="cta-white">Escolha o seu</a>
+      </div>
+
+      <h3 class="desk">Grades seguras</h3>
+      <p class="desk">Grades firmes com 6 pontos de apoio e sistema de encaixe exclusivo Mueller! Mais segurança e
+        estabilidade para você cozinhar
+      </p>
+
+      <div class="video-box">
+        <video poster="https://goffwd.sirv.com/Mueller/grades-seguras-poster.jpg" playsinline
+          controlslist="nodownload" width="100%" height="100%" muted preload="auto" loop="" data-loaded-metadata="true"
+          class="video video-bg" src="https://goffwd.sirv.com/Mueller/grades-seguras-min.mp4" load="lazy"></video>
+
+        <div class="overlay"></div>
+
+        <h3 class="mob">Grades seguras</h3>
+        <p class="mob">Grades firmes com 6 pontos de apoio e sistema de encaixe exclusivo Mueller! Mais
+          segurança e
+          estabilidade para você cozinhar
+        </p>
+        <a href="#overview" data-class="cta-white" class="cta-white">Escolha o seu</a>
+
+      </div>
+
+
+      <h3 class="desk">Chamas com potências variadas</h3>
+      <p class="desk">Mesa versátil com diferentes tipos de queimadores. Mais escolhas para você não errar o ponto
+        das receitas</p>
+
+      <div class="video-box">
+        <video poster="https://goffwd.sirv.com/Mueller/potencia-variada-poster.jpg" playsinline
+          controlslist="nodownload" width="100%" height="100%" muted preload="auto" loop="" data-loaded-metadata="true"
+          class="video video-bg" src="https://goffwd.sirv.com/Mueller/potencia-variada-min.mp4" load="lazy"></video>
+
+        <div class="overlay"></div>
+
+        <h3 class="mob">Chamas com potências variadas</h3>
+        <p class="mob">Mesa versátil com diferentes tipos de queimadores. Mais escolhas para você não errar o
+          ponto das receitas</p>
+        <a href="#overview" data-class="cta-white" class="cta-white">Escolha o seu</a>
+      </div>
+
+
+      <h3 class="desk">Linha completa</h3>
+      <p class="desk">Fogões mesa de vidro com a qualidade e design que impressionam. Uma linha completa para você
+        escolher!</p>
+
+      <div class="video-box">
+        <video poster="https://goffwd.sirv.com/Mueller/linha-completa-poster.jpg" playsinline
+          controlslist="nodownload" width="100%" height="100%" muted preload="auto" loop="" data-loaded-metadata="true"
+          class="video video-bg" src="https://goffwd.sirv.com/Mueller/linha-completa.mp4" load="lazy"></video>
+
+        <div class="overlay"></div>
+
+        <h3 class="mob">Linha completa</h3>
+        <p class="mob">Fogões mesa de vidro com a qualidade e design que impressionam. Uma linha completa para
+          você escolher!</p>
+        <a href="#overview" data-class="cta-white" class="cta-white">Escolha o seu</a>
+      </div>
+    </div>
+
+    <div data-class="overview" class="overview" id="overview">
+      <h2>Mais escolhas <span>para você</span></h2>
+
+      <div class="menu">
+        <button id="acabamentos-btn">Cores</button>
+        <button id="modelos-btn">Modelos</button>
+        <button id="bocas-btn">Tamanhos</button>
+      </div>
+
+      <div class="acabamentos">
+        <div class="tap">
+
+        </div>
+
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/piacere.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Preto Fosco</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=61&mesa=189">saiba
+            mais</a>
+        </div>
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/decorato.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Preto</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=54&mesa=189">saiba
+            mais</a>
+        </div>
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/inox.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Inox</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=62&mesa=189">saiba
+            mais</a>
+        </div>
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/grafite.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Grafite</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=321&mesa=189">saiba
+            mais</a>
+        </div>
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/branco.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Branco</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=53&mesa=189">saiba
+            mais</a>
+        </div>
+
+
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/piacere.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Piacere Vetro</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/piacere-vetro">saiba mais</a>
+        </div>
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/inox.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Decorato Vetro</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/lancamentos/decorato-vetro">saiba mais</a>
+        </div>
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/fratello.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">Fratello Vetro</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/fratello-vetro
+            ">saiba mais</a>
+        </div>
+
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/5bocas.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">5 bocas</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?cat=109&mesa=189
+            ">saiba mais</a>
+        </div>
+        <div class="card">
+          <img src="https://goffwd.sirv.com/Mueller/4bocas.png" alt="" load="lazy">
+          <div class="overlay">
+          </div>
+          <span class="name">4 Bocas</span>
+          <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?cat=108&mesa=189">saiba mais</a>
+        </div>
+      </div>
+
+      <div class="slider-desk">
+        <div class="card-box">
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/piacere.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Preto Fosco</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=61&mesa=189">saiba
+              mais</a>
+          </div>
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/decorato.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Preto</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=54&mesa=189">saiba
+              mais</a>
+          </div>
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/inox.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Inox</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=62&mesa=189">saiba
+              mais</a>
+          </div>
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/grafite.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Grafite</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=321&mesa=189">saiba
+              mais</a>
+          </div>
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/branco.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Branco</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?color=53&mesa=189">saiba
+              mais</a>
+          </div>
+        </div>
+
+        <div class="card-box">
+
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/piacere.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Piacere Vetro</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/piacere-vetro">saiba mais</a>
+          </div>
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/inox.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Decorato Vetro</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/lancamentos/decorato-vetro
+                ">saiba mais</a>
+          </div>
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/fratello.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">Fratello Vetro</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/fratello-vetro">saiba mais</a>
+          </div>
+        </div>
+
+        <div class="card-box">
+
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/5bocas.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>
+            <span class="name">5 bocas</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?cat=109&mesa=189">saiba
+              mais</a>
+          </div>
+
+          <div class="card-desk">
+            <img src="https://goffwd.sirv.com/Mueller/4bocas.png" alt="" load="lazy">
+            <div class="overlay">
+            </div>s
+            <span class="name">4 bocas</span>
+            <a target="_blank" href="https://loja.mueller.ind.br/cozinha/fogoes?cat=108&mesa=189">saiba
+              mais</a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="white-bg">
+
+      </div>
+
+    </div>
+
+    <div data-class="comments" class="comments">
+      <h2>
+        O que estão <span>falando</span>
+      </h2>
+
+      <div class="quote-img">
+      </div>
+
+
+      <div class="quote-box">
+        <div class="quote">
+
+          <div class="user">
+            <div class="avatar"></div>
+            <span>@geisianypralt</span>
+          </div>
+          <p>Simplesmente meu fogão é lindo! Já usei o forno e é ótimo, simplesmente adorei!</p>
+        </div>
+
+        <div class="quote">
+          <div class="user">
+            <div class="avatar"></div>
+            <span>@flowers_sy</span>
+          </div>
+          <p>Tenho um! Já faz quase 3 anos que comprei. Ele é lindo!</p>
+        </div>
+
+        <div class="quote">
+          <div class="user">
+            <div class="avatar"></div>
+            <span>@rosana.diasdasilva</span>
+          </div>
+          <p>Eu ganhei um de aniversário do meu namorado. To amando. Ele é lindo e as chamas bem fortes.</p>
+
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control"></div>
+        <div class="control"></div>
+        <div class="control"></div>
+      </div>
+    </div>
+
+    <div data-class="filter-section" class="filter-section">
+      <h2>
+        Realidade <span>Aumentada</span>
+      </h2>
+
+      <h3>Use nosso filtro no instagram e veja como nossos fogões mesa de vidro ficarão na sua cozinha!</h3>
+
+      <span class="filter-name">Piacere Vetro</span>
+
+      <div class="filter-box">
+        <div class="filter">
+          <video playsinline class="s-video video-bg" controlslist="nodownload"
+            poster="https://goffwd.sirv.com/Mueller/piacere-filter-bg.mp4" muted preload="auto" loop=""
+            data-loaded-metadata="true" src="https://goffwd.sirv.com/Mueller/piacere-filter-bg.mp4">
+          </video>
+          <img src="https://goffwd.sirv.com/Mueller/mockup-insta.png" alt="">
+
+        </div>
+
+        <div class="filter">
+          <video playsinline class="s-video video-bg" controlslist="nodownload"
+            poster="https://goffwd.sirv.com/Mueller/fratello-filter-bg.mp4" muted preload="auto" loop=""
+            data-loaded-metadata="true" src="https://goffwd.sirv.com/Mueller/fratello-filter-bg.mp4">
+          </video>
+
+          <img src="https://goffwd.sirv.com/Mueller/mockup-insta.png" alt="">
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control"></div>
+        <div class="control"></div>
+      </div>
+
+      <a class="filter-link" target="_blank" href="">Acessar agora</a>
+
+      <h3 style="display: none">É super simples</h3>
+
+      <p class="instruction" style="display: none"><span>1</span>Aponte a câmera do celular para o QR Code ao
+        lado.</p>
+      <p class="instruction" style="display: none"><span>2</span>Salve o filtro conforme indicado. </p>
+      <p class="instruction" style="display: none"><span>3</span>Teste o filtro na sua cozinha e escolha o seu
+        modelo de fogão mesa de
+        vidro favorito!</p>
+
+      <div class="filter-desk">
+
+        <div class="filter">
+          <div class="image">
+            <video playsinline class="s-video video-bg" controlslist="nodownload"
+              poster="https://goffwd.sirv.com/Mueller/piacere-filter-bg.mp4" muted preload="auto" loop=""
+              data-loaded-metadata="true" src="https://goffwd.sirv.com/Mueller/piacere-filter-bg.mp4">
+            </video>
+
+            <img src="https://goffwd.sirv.com/Mueller/mockup-insta.png" alt="">
+          </div>
+
+          <div class="info">
+            <img class="conector" src="https://goffwd.sirv.com/Mueller/top-conector.svg" alt="">
+            <img src="" alt="">
+            <img class="code" src="https://goffwd.sirv.com/Mueller/piacere-qr-code.png" alt="">
+            <p>Escaneie o QR Code para conhecer a linha <span>Piacere</span></p>
+            <img class="conector" src="https://goffwd.sirv.com/Mueller/bottom-conector.svg" alt="">
+          </div>
+        </div>
+
+        <div class="filter">
+          <div class="image">
+            <video playsinline class="s-video video-bg" controlslist="nodownload" width="100%" height="100%"
+              poster="https://goffwd.sirv.com/Mueller/fratello-filter-bg.mp4" muted preload="auto" loop=""
+              data-loaded-metadata="true" src="https://goffwd.sirv.com/Mueller/fratello-filter-bg.mp4">
+            </video>
+
+            <img src="https://goffwd.sirv.com/Mueller/mockup-insta.png" alt="">
+          </div>
+
+          <div class="info">
+            <img class="conector" src="https://goffwd.sirv.com/Mueller/top-conector.svg" alt="">
+            <img src="" alt="">
+            <img class="code" src="https://goffwd.sirv.com/Mueller/fratello-qr-code.png" alt="">
+            <p>Escaneie o QR Code para conhecer a linha <span>Fratello</span></p>
+            <img class="conector" src="https://goffwd.sirv.com/Mueller/bottom-conector.svg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-class="cupom" class="cupom">
+    <img class="mob" src="https://goffwd.sirv.com/Mueller/banner-desconto-mob-min.jpg" alt="" load="lazy">
+    <img class="desk" src="https://goffwd.sirv.com/Mueller/banner-desconto-desk-min.jpg" alt="" load="lazy">
+
+    <p class="call mob">Ganhe 10%</p>
+
+    <p class="call mob">de desconto</p>
+
+    <p class="call desk">Ganhe 10% de desconto</p>
+
+    <p class="text">
+      na compra do <br class="mob"> seu fogão <br> mesa
+      de vidro <br class="mob"><span>Mueller!</span>
+    </p>
+
+    <div class="form-box">
+      <p class="sub-text">
+        Cadastre seu e-mail e tenha acesso <br class="desk"> ao <br class="mob">
+        código de desconto.
+      </p>
+
+      <input class="email" name="email" id="email" type="email" placeholder="Email">
+
+      <div class="box">
+        <div class="term-box">
+          <input type="checkbox" class="check-box" id="terms">
+          <span>Aceito receber comunicações da Mueller</span>
+        </div>
+
+        <button class="clipboard-btn">
+          Eu quero!
+        </button>
+
+        <span class="toast">
+          Copiado!
+        </span>
+      </div>
+    </div>
+
+    <span id="cupom-code">MEUFOGAO</span>
+
+  </div>
+
+  <div data-class="comparative" class="comparative">
+    <h2>Fogão mesa de vidro é <span>Mueller</span></h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="title"><span>Características</span></th>
+          <th class="title"><span>Fratello Vetro</span></th>
+          <th class="title"><span>Piacere Vetro</span></th>
+          <th class="title"><span>Decorato Vetro</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Mesa em vidro temperado</td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Design moderno</td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Grades com 6 pontos de apoio</td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Tipo de grade</td>
+          <td>
+            <span>Esmaltada</span>
+          </td>
+          <td>
+            <span>Ferro fundido</span>
+          </td>
+          <td>
+            <span>Ferro fundido</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Tripla chama</td>
+          <td>
+            <div class="times"></div>
+          </td>
+          <td>
+            <div class="check cinco-bocas"></div>
+          </td>
+          <td>
+            <div class="check cinco-bocas"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Ultra chama</td>
+          <td>
+            <div class="check cinco-bocas"></div>
+          </td>
+          <td>
+            <div class="times"></div>
+          </td>
+          <td>
+            <div class="times"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Grades do forno</td>
+          <td>
+            <span>1 grade ajustável
+            </span>
+          </td>
+          <td>
+            <span>2 grades ajustáveis</span>
+          </td>
+          <td>
+            <span>1 grade ajustável e <br>
+              1 grade autodeslizante</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Forno com Total Clean</td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td class="name">Luz no forno*<br>
+            (A lâmpada não acompanha o produto)
+          </td>
+          <td>
+            <div class="times"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td class="name">Pés altos</td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">1 ano de garantia total <br> (Inclusive na mesa de vidro)</td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+          <td>
+            <div class="check"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">Escolha o seu:</td>
+          <td>
+            <div class="cta-box">
+              <a target="_blank" href="https://loja.mueller.ind.br/fratello-vetro">Comprar</a>
+            </div>
+          </td>
+          <td>
+            <div class="cta-box">
+              <a target="_blank" href="https://loja.mueller.ind.br/piacere-vetro">Comprar</a>
+            </div>
+          </td>
+          <td>
+            <div class="cta-box">
+              <a target="_blank" href="https://loja.mueller.ind.br/lancamentos/decorato-vetro">Comprar</a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <div class="video-modal">
+    <div class="close"></div>
+    <div class="youtube-box" id="player6">
+    </div>
+    <div class="youtube-box" id="player5">
+    </div>
+    <div class="youtube-box" id="player4">
+    </div>
+    <div class="youtube-box" id="player">
+    </div>
+    <div class="youtube-box" id="player2">
+    </div>
+    <div class="youtube-box" id="player3">
+    </div>
+  </div>
+
+  <!-- Fixador de vh -->
+  <script>
+    window.addEventListener("load", function () {
+      var viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute("content", viewport.content + ", height=" + window.innerHeight);
+    })
+  </script>
+
+  <!-- Global -->
+  <script>
+
+    function swipedetect(el, callback) {
+
+      var touchsurface = el,
+        swipedir,
+        startX,
+        startY,
+        distX,
+        distY,
+        threshold = 75, //required min distance traveled to be considered swipe
+        restraint = 200, // maximum distance allowed at the same time in perpendicular direction
+        allowedTime = 500, // maximum time allowed to travel that distance
+        elapsedTime,
+        startTime,
+        handleswipe = callback || function (swipedir) { }
+
+      touchsurface.addEventListener('touchstart', function (e) {
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        dist = 0
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+      }, false)
+
+      touchsurface.addEventListener('touchend', function (e) {
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (elapsedTime <= allowedTime) { // first condition for awipe met
+          if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) { // 2nd condition for horizontal swipe met
+            swipedir = (distX < 0) ? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+          }
+          else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint) { // 2nd condition for vertical swipe met
+            swipedir = (distY < 0) ? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+          }
+        }
+        handleswipe(swipedir);
+      }, false)
+    }
+
+    const overview = document.getElementById('overview');
+
+
+  </script>
+
+  <!-- Video -->
+  <script>
+    const videoSection = document.querySelector('.video')
+    const cursor = document.querySelector('.cursor')
+    const modal = document.querySelector('.video-modal')
+    const youtubeBox = document.querySelector('.youtube-box')
+    const close = document.querySelector('.close')
+
+    const thumbBox = document.querySelector('.thumb-box')
+    const thumbs = document.querySelectorAll('.thumb')
+    const controls = videoSection.querySelectorAll('.control')
+    const nextBtn = videoSection.querySelector('.next')
+    const nextTitle = nextBtn.querySelector('.title');
+    const prevBtn = videoSection.querySelector('.prev')
+    const prevTitle = prevBtn.querySelector('.title');
+    const videoTitles = ['Mais variedades de chamas', 'Dia dos namorados', 'Mais beleza e design para a sua cozinha', 'Grades firmes e seguras', 'Dia das mães', 'Limpeza fácil']
+    const videoCall = document.querySelector('.video-call');
+    const calls = ['não errar no ponto', 'compartilhar momentos', 'impressionar', 'Cozinhar com segurança', 'Amar', 'Aproveitar']
+    let curPosition = 0;
+
+    const players = [];
+
+    //Slider
+
+    function position() {
+      thumbs.forEach((thumb, index) => {
+        if (index < curPosition) {
+          thumb.style.transform = "translateX(-100%)"
+          controls[index].style.backgroundColor = "#494949"
+          players[index].h.style.display = 'none'
+        } else if (index == curPosition) {
+          thumb.style.transform = "translateX(0%)"
+          controls[index].style.backgroundColor = "#c4c4c4"
+          players[index].h.style.display = 'block'
+          videoCall.style.color = 'transparent'
+          nextTitle.textContent = videoTitles[index + 1]
+          prevTitle.textContent = videoTitles[index - 1]
+          setTimeout(() => {
+            videoCall.style.width = `${calls[curPosition].length + 2}ch`
+            videoCall.textContent = calls[curPosition]
+          }, 250);
+          setTimeout(() => {
+            videoCall.style.color = '#000000'
+          }, 600);
+        } else if (index > curPosition) {
+          thumb.style.transform = "translateX(100%)"
+          controls[index].style.backgroundColor = "#494949"
+          players[index].h.style.display = 'none'
+        }
+
+        if (curPosition == 0) {
+          prevBtn.style.opacity = 0;
+        } else {
+          prevBtn.style.opacity = 1;
+        }
+
+        if (curPosition == controls.length - 1) {
+          nextBtn.style.opacity = 0;
+        } else {
+          nextBtn.style.opacity = 1;
+        }
+      })
+    }
+
+    function next() {
+      if (curPosition < 5) {
+        curPosition++;
+        position();
+      }
+    }
+
+
+    function prev() {
+      if (curPosition > 0) {
+        curPosition--;
+        position();
+      }
+    }
+
+
+    controls.forEach((control, index) => {
+      control.addEventListener('click', () => {
+        curPosition = index
+        position()
+      })
+    });
+
+
+    swipedetect(thumbBox, function (swipedir) {
+      if (swipedir == 'left') {
+        next();
+      } else if (swipedir == 'right') {
+        prev();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      next()
+    })
+
+    prevBtn.addEventListener('click', () => {
+      prev()
+    })
+
+
+
+    //Video Render
+
+    let youtubeWidth = youtubeBox.offsetWidth;
+    let youtubeHeight = youtubeBox.offsetHeight;
+
+    // 2. This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+
+
+    function onYouTubeIframeAPIReady() {
+
+      players[0] = new YT.Player('player6', {
+        height: `${youtubeHeight}`,
+        width: `${youtubeWidth}`,
+        videoId: 'DlHvm3DH7Ag',
+        playerVars: {
+          playsinline: 1,
+          modestbranding: 1
+        }
+      });
+
+      players[1] = new YT.Player('player5', {
+        height: `${youtubeHeight}`,
+        width: `${youtubeWidth}`,
+        videoId: 'J0taFupPUXk',
+        playerVars: {
+          playsinline: 1,
+          modestbranding: 1
+        }
+      });
+
+      players[2] = new YT.Player('player4', {
+        height: `${youtubeHeight}`,
+        width: `${youtubeWidth}`,
+        videoId: 'VlnFOpmo_34',
+        playerVars: {
+          playsinline: 1,
+          modestbranding: 1
+        }
+      });
+
+      players[3] = new YT.Player('player', {
+        height: `${youtubeHeight}`,
+        width: `${youtubeWidth}`,
+        videoId: 'nkFGZQlwbPQ',
+        playerVars: {
+          playsinline: 1,
+          modestbranding: 1
+        }
+      });
+
+      players[4] = new YT.Player('player2', {
+        height: `${youtubeHeight}`,
+        width: `${youtubeWidth}`,
+        videoId: 'B2iyax693pw',
+        playerVars: {
+          playsinline: 1,
+          modestbranding: 1
+        }
+      });
+
+      players[5] = new YT.Player('player3', {
+        height: `${youtubeHeight}`,
+        width: `${youtubeWidth}`,
+        videoId: 'XmvmpnsH3FU',
+        playerVars: {
+          playsinline: 1,
+          modestbranding: 1
+        }
+      });
+
+
+      position()
+    }
+
+    //Vídeo control
+
+    thumbBox.addEventListener('click', () => {
+      modal.style.opacity = 1;
+      modal.style.pointerEvents = 'initial';
+      players[curPosition].playVideo()
+    })
+
+    close.addEventListener('click', () => {
+      modal.style.opacity = 0;
+      modal.style.pointerEvents = 'none';
+      players[curPosition].pauseVideo()
+    })
+
+    modal.addEventListener('click', () => {
+      modal.style.opacity = 0;
+      modal.style.pointerEvents = 'none';
+      players[curPosition].pauseVideo()
+    })
+
+    function stopVideo() {
+      player.stopVideo();
+    }
+
+
+    //Mouse cursor
+    if (window.innerWidth >= 1024) {
+      thumbBox.addEventListener('mousemove', event => {
+        cursor.style.top = `${event.layerY - 40}px`
+        cursor.style.left = `${event.layerX - 40}px`
+      })
+
+      thumbBox.addEventListener('mouseleave', event => {
+        cursor.style.top = "calc(50% - 40px)";
+        cursor.style.left = "calc(50% - 40px)";
+      })
+    }
+
+
+    // Backrgound hero
+
+    const videos = document.querySelectorAll('.video-bg');
+    const play = document.getElementById('play')
+
+    if (window.innerWidth >= 1280) {
+      videos.forEach(video => {
+        video.setAttribute('autoplay', 'true');
+      })
+    }
+
+    play.addEventListener('touchstart', () => {
+      videos.forEach(video => {
+        video.play()
+      })
+    })
+  </script>
+
+  <!-- Overview  -->
+  <script>
+      (function () {
+        //Variables
+
+        const acabamentos = document.querySelector('.acabamentos')
+        const cards = document.querySelectorAll('.card')
+        let curPosition = 0
+
+        const acabamentosBtn = document.getElementById('acabamentos-btn');
+        const modelosBtn = document.getElementById('modelos-btn');
+        const bocasBtn = document.getElementById('bocas-btn');
+        const tap = document.querySelector('.tap');
+
+        //Functions
+
+        function position() {
+          cards.forEach((card, index) => {
+            if (index == curPosition - 1) {
+              card.style.transform = "translateX(-95%) scale(0.8)"
+            } else if (index == curPosition) {
+              card.style.transform = "translateX(0%) scale(1)"
+            } else if (index == curPosition + 1) {
+              card.style.transform = "translateX(95%) scale(0.8)"
+            } else if (index <= curPosition - 1) {
+              card.style.transform = "translateX(-190%) scale(0.8)"
+            } else if (index >= curPosition + 1) {
+              card.style.transform = "translateX(190%) scale(0.8)"
+            }
+          })
+
+          if (curPosition >= 0 && curPosition <= 4) {
+            acabamentosBtn.style.borderColor = "white"
+            modelosBtn.style.borderColor = "transparent"
+            bocasBtn.style.borderColor = "transparent"
+          } else if (curPosition >= 2 && curPosition <= 7) {
+            acabamentosBtn.style.borderColor = "transparent"
+            modelosBtn.style.borderColor = "white"
+            bocasBtn.style.borderColor = "transparent"
+          } else if (curPosition >= 5 && curPosition <= 9) {
+            acabamentosBtn.style.borderColor = "transparent"
+            modelosBtn.style.borderColor = "transparent"
+            bocasBtn.style.borderColor = "white"
+          }
+        }
+
+        function next() {
+          if (curPosition < 9) {
+            curPosition++;
+            position();
+          }
+        }
+
+
+        function prev() {
+          if (curPosition > 0) {
+            curPosition--;
+            position();
+          }
+        }
+
+
+        //Event listeners
+
+        position()
+
+        if (window.innerWidth <= 1024) {
+          acabamentosBtn.addEventListener('click', () => {
+            curPosition = 0
+            position()
+          })
+
+          modelosBtn.addEventListener('click', () => {
+            curPosition = 5
+            position()
+          })
+
+          bocasBtn.addEventListener('click', () => {
+            curPosition = 8
+            position()
+          })
+        }
+
+        swipedetect(acabamentos, function (swipedir) {
+          if (swipedir == 'left') {
+            next()
+          } else if (swipedir == 'right') {
+            prev()
+          }
+        });
+
+        acabamentos.addEventListener('touchstart', () => {
+          tap.style.animation = 'none';
+          tap.style.opacity = '0';
+        })
+      })();
+  </script>
+
+  <!-- Overview desk  -->
+  <script>
+    (function () {
+      const sliderDesk = document.querySelector('.slider-desk')
+      const items = document.querySelectorAll('.card-box')
+      let curPosition = 0;
+
+      const acabamentosBtn = document.getElementById('acabamentos-btn');
+      const modelosBtn = document.getElementById('modelos-btn');
+      const bocasBtn = document.getElementById('bocas-btn');
+
+      function position() {
+        items.forEach((item, index) => {
+          if (index < curPosition) {
+            item.style.transform = "translateX(-100%)"
+          } else if (index == curPosition) {
+            item.style.transform = "translateX(0%)"
+          } else if (index > curPosition) {
+            item.style.transform = "translateX(100%)"
+          }
+        })
+
+        if (curPosition == 0) {
+          acabamentosBtn.style.borderColor = "white"
+          modelosBtn.style.borderColor = "transparent"
+          bocasBtn.style.borderColor = "transparent"
+        } else if (curPosition == 1) {
+          acabamentosBtn.style.borderColor = "transparent"
+          modelosBtn.style.borderColor = "white"
+          bocasBtn.style.borderColor = "transparent"
+        } else if (curPosition == 2) {
+          acabamentosBtn.style.borderColor = "transparent"
+          modelosBtn.style.borderColor = "transparent"
+          bocasBtn.style.borderColor = "white"
+        }
+      }
+
+      function next() {
+        if (curPosition < 2) {
+          curPosition++;
+          position();
+        }
+      }
+
+
+      function prev() {
+        if (curPosition > 0) {
+          curPosition--;
+          position();
+        }
+      }
+
+
+      if (window.innerWidth > 1024) {
+        acabamentosBtn.addEventListener('click', () => {
+          curPosition = 0
+          position()
+        })
+
+        modelosBtn.addEventListener('click', () => {
+          curPosition = 1
+          position()
+        })
+
+        bocasBtn.addEventListener('click', () => {
+          curPosition = 2
+          position()
+        })
+      }
+
+      position()
+    })();
+  </script>
+
+  <script>
+
+    // Variables
+    const comments = document.querySelector('.comments')
+    const quoteBox = document.querySelector('.quote-box')
+    const quotes = document.querySelectorAll('.quote')
+    const controls = comments.querySelectorAll('.control')
+    let curPosition = 0;
+
+    //Functions
+
+    function position() {
+      quotes.forEach((quote, index) => {
+        if (index < curPosition) {
+          quote.style.transform = "translateX(-100%)"
+          controls[index].style.backgroundColor = "#494949"
+        } else if (index == curPosition) {
+          quote.style.transform = "translateX(0%)"
+          controls[index].style.backgroundColor = "#c4c4c4"
+        } else if (index > curPosition) {
+          quote.style.transform = "translateX(100%)"
+          controls[index].style.backgroundColor = "#494949"
+        }
+      })
+    }
+
+    function next() {
+      if (curPosition < 2) {
+        curPosition++;
+        position();
+      }
+    }
+
+
+    function prev() {
+      if (curPosition > 0) {
+        curPosition--;
+        position();
+      }
+    }
+
+
+    //Event Listeners
+
+    if (window.innerWidth <= 1024) {
+      position()
+    }
+
+
+    controls.forEach((control, index) => {
+      control.addEventListener('click', () => {
+        curPosition = index
+        position()
+      })
+    });
+
+    swipedetect(quoteBox, function (swipedir) {
+      if (swipedir == 'left') {
+        next();
+      } else if (swipedir == 'right') {
+        prev();
+      }
+    });
+
+  </script>
+
+  <!-- Comments  -->
+  <script>
+    (function () {
+      // Variables
+      const comments = document.querySelector('.comments')
+      const quoteBox = document.querySelector('.quote-box')
+      const quotes = document.querySelectorAll('.quote')
+      const controls = comments.querySelectorAll('.control')
+      let curPosition = 0;
+
+      //Functions
+
+      function position() {
+        quotes.forEach((quote, index) => {
+          if (index < curPosition) {
+            quote.style.transform = "translateX(-100%)"
+            controls[index].style.backgroundColor = "#494949"
+          } else if (index == curPosition) {
+            quote.style.transform = "translateX(0%)"
+            controls[index].style.backgroundColor = "#c4c4c4"
+          } else if (index > curPosition) {
+            quote.style.transform = "translateX(100%)"
+            controls[index].style.backgroundColor = "#494949"
+          }
+        })
+      }
+
+      function next() {
+        if (curPosition < 2) {
+          curPosition++;
+          position();
+        }
+      }
+
+
+      function prev() {
+        if (curPosition > 0) {
+          curPosition--;
+          position();
+        }
+      }
+
+
+      //Event Listeners
+
+      if (window.innerWidth <= 1024) {
+        position()
+      }
+
+
+      controls.forEach((control, index) => {
+        control.addEventListener('click', () => {
+          curPosition = index
+          position()
+        })
+      });
+
+      swipedetect(quoteBox, function (swipedir) {
+        if (swipedir == 'left') {
+          next();
+        } else if (swipedir == 'right') {
+          prev();
+        }
+      });
+
+    })();
+  </script>
+
+  <!-- Filter  -->
+  <script>
+    (function () {
+      //variables
+      const filterSection = document.querySelector('.filter-section')
+      const filterBox = document.querySelector('.filter-box');
+      const filterName = document.querySelector('.filter-name');
+      const filters = filterBox.querySelectorAll('.filter');
+      const controls = filterSection.querySelectorAll('.control')
+      const filterLink = document.querySelector('.filter-link');
+      let curPosition = 0;
+
+      const names = ['Piacere Vetro', 'Frattelo Vetro']
+      const links = ['https://www.instagram.com/ar/147535054021096/', 'https://www.instagram.com/ar/471266040753272/']
+
+      //functions
+
+      function position() {
+        filters.forEach((filter, index) => {
+          if (index < curPosition) {
+            filter.style.transform = "translateX(-100%)"
+            controls[index].style.backgroundColor = "#494949"
+          } else if (index == curPosition) {
+            filter.style.transform = "translateX(0%)"
+            controls[index].style.backgroundColor = "#c4c4c4"
+            filterName.textContent = names[index]
+            filterLink.href = links[index]
+          } else if (index > curPosition) {
+            filter.style.transform = "translateX(100%)"
+            controls[index].style.backgroundColor = "#494949"
+          }
+        })
+      }
+
+      function next() {
+        if (curPosition < 1) {
+          curPosition++;
+          position();
+        }
+      }
+
+
+      function prev() {
+        if (curPosition > 0) {
+          curPosition--;
+          position();
+        }
+      }
+
+      //
+
+      if (window.innerWidth <= 1024) {
+        position()
+      }
+
+      controls.forEach((control, index) => {
+        control.addEventListener('click', () => {
+          curPosition = index
+          position()
+        })
+      });
+
+      swipedetect(filterBox, function (swipedir) {
+        if (swipedir == 'left') {
+          next();
+        } else if (swipedir == 'right') {
+          prev();
+        }
+      });
+    })()
+  </script>
+
+  <!-- Cupom  -->
+  <script>
+    const clipboardBtn = document.querySelector('.clipboard-btn')
+    const input = document.getElementById('email')
+    const checkbox = document.getElementById('terms')
+    const toast = document.querySelector('.toast');
+    const termBox = document.querySelector('.term-box');
+    const cupomSection = document.querySelector('.cupom');
+    const cupomCode = document.getElementById('cupom-code');
+
+    let sended = false;
+
+    function clipboard() {
+      // Clear any current selection
+      const selection = window.getSelection()
+      selection.removeAllRanges();
+
+      // Select code
+      const code = cupomCode.childNodes[0];
+      const range = document.createRange()
+      range.setStart(code, 0);
+      range.setEnd(code, code.length);
+      selection.addRange(range)
+
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+      selection.removeAllRanges();
+
+      /* Alert the copied text */
+      toast.style.opacity = "1";
+      setTimeout(() => {
+        toast.style.opacity = "0";
+      }, 1000);
+
+    }
+
+    clipboardBtn.addEventListener('click', () => {
+      if (!sended) {
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(input.value)) {
+          let myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json")
+
+          let email = input.value
+
+          let raw = JSON.stringify({
+            "event_type": "CONVERSION",
+            "event_family": "CDP",
+            "payload": {
+              "conversion_identifier": "form-mesa-de-vidro-lp",
+              "email": `${email}`,
+              "available_for_mailing": checkbox.checked
+            }
+          });
+
+          var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+          };
+
+          fetch("https://api.rd.services/platform/conversions?api_key=BawwJHtJmSzlLQgSQNkKYlBhCLzuLLjtlgRP", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+
+          sended = true;
+
+          clipboardBtn.classList.add('copy');
+          clipboardBtn.textContent = 'copiar código'
+          clipboardBtn.appendChild(toast);
+
+
+          input.classList.add('send')
+          input.value = "MEUFOGAO";
+
+          termBox.style.opacity = 0;
+          if (window.innerWidth < 1024) {
+            termBox.style.width = '0';
+          }
+
+        } else {
+          alert('Digite um email válido e tente novamente')
+        }
+      } else {
+        clipboard();
+      }
+    })
+  </script>
+</body>
+
+</html>

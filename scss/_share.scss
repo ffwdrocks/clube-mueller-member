@@ -1,0 +1,137 @@
+section[data-class="share"].share{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0;
+
+    h2{
+        font-size: 2.2em;
+        font-weight: 600;
+        color: #000;
+    }
+
+    .link-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+        border-radius: 50px;
+
+        div{
+            border: none;
+            background: #E2E2E2;
+            border-radius: 50px;
+            font-size: 1em;
+            padding: 8px 20px;
+            outline: none;
+            display: flex;
+            align-items: center;
+
+            span{
+                white-space: nowrap;
+            }
+        }
+
+        .link{
+            pointer-events: none;
+            opacity: 0;
+            position: absolute;
+        }
+
+        button{
+            outline: none;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 60px;
+            background: #75A637;
+            color: white;
+            font-size: 1.6em;
+            font-weight: 200;
+            margin-top: 20px;
+            width: max-content;
+
+            img{
+                height: 0.8em;
+            }
+        }
+    }
+
+    .networks{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        z-index: 2;
+
+        a{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img{
+                height: 30px;
+            }
+
+            &:nth-child(1){
+                background: linear-gradient(0deg, #E09B3D -46.1%, #C74C4D 11.28%, #C21975 68.66%, #7024C4 145.16%);
+            }
+
+            &:nth-child(2){
+                background: #2C4585;
+            }
+
+            &:nth-child(3){
+                background: #75A637;
+
+            }
+        }
+    }
+
+    .shape-bg-desk{
+        display: none;
+    }
+
+    @media (min-width: 1024px) {
+        position: relative;
+
+        h2{
+            font-size: 3.2em;
+        }
+
+        .link-box{
+            flex-direction: row;
+            height: 50px;
+            box-shadow: 0px 4px 34px 0px #00000015;
+            z-index: 2;
+
+            div{
+                border-radius: 50px 0 0 50px;
+                height: 100%;
+            }
+
+            button{
+                margin-top: 0;
+                border-radius: 0 50px 50px 0;
+                height: 100%;
+                padding: 10px 60px 10px 50px;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                font-family: 'Mangerica' !important;
+
+                &:hover{
+                    background: #597e2a;
+                }
+            }
+        }
+
+        .shape-bg-desk{
+            display: initial;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+        }
+    }
+}

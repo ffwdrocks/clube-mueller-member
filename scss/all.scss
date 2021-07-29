@@ -1,0 +1,113 @@
+@import 'fonts';
+
+
+div[data-class="main"].main{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Mangerica';
+    max-width: 100%;
+    position: relative;
+}
+
+html{
+    scroll-behavior: smooth !important;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+
+.video-modal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #2c458567;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+
+    .youtube-box{
+        width: 90vw;
+        height: 30vh;
+        background-color: gray;
+        position: relative;
+    }
+
+    .close{
+        width: 90vw;
+        height: 30vh;
+        position: absolute;
+
+        &::before{
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://goffwd.sirv.com/Mueller/close.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            right: 0;
+            top: -40px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        
+        .youtube-box{
+            width: 61.5vw;
+            height: 70vh;
+        }
+
+        .close{
+            width: 61.5vw;
+            height: 70vh;
+
+            &::before{
+                width: 40px;
+                height: 40px;
+                top: -50px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+/* Components */
+
+a[data-class="cta-white"].cta-white{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 1.5px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 7px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.4em 2em;
+
+    @media (min-width: 1024px){
+        font-size: 1.5em;
+    }
+}
+
+.bold{
+    font-weight: 900;
+}
+
+@import 'hero';
+@import 'scoreboard';
+@import 'share';
+@import 'send';
+@import 'levels';
+@import 'benefits';
+@import 'rules';
