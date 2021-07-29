@@ -3,7 +3,8 @@ section[data-class="send"].send{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 100px 0;
+    padding-top: 100px;
+    height: 600px;
     z-index: 2;
 
     h2{
@@ -93,15 +94,44 @@ section[data-class="send"].send{
                 background: transparent;
                 border: none;
                 outline: none;
+                transition: all 0.5s ease;
+                transform-origin: center;
+                transform: rotateX(180deg);
+                cursor: pointer;
+
+                &.open{
+                    transform: rotateX(0deg);
+                }
+
+                &:hover{
+                    opacity: 0.6;
+                }
             }
         }
 
         .invited-box{
             width: 100%;
+            height: 160px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+
+            &.open{
+                
+                .list-heading{
+                    transform: translateY(-160px);
+                }
+
+                ul{
+                    transform: translateY(-160px);
+                }
+            }
 
             .list-heading{
                 display: flex;
                 justify-content: space-between;
+                padding-right: 15px;
+                transform: translateY(0px);
+                transition: all 0.5s ease;
 
                 p{
                     font-size: 1.2em;
@@ -109,16 +139,46 @@ section[data-class="send"].send{
             }
 
             ul{
+                transform: translateY(0px);
+                transition: all 0.5s ease;
                 width: 100%;
                 padding: 0;
+                height: 100px;
+                overflow-y: scroll;
+
+               /* width */
+                &::-webkit-scrollbar {
+                    width: 10px;
+                }
+                
+                /* Track */
+                &::-webkit-scrollbar-track {
+                    background: #f1f1f167;
+                    border-radius: 50px;
+                }
+                
+                /* Handle */
+                &::-webkit-scrollbar-thumb {
+                    background: #2c458583;
+                    border-radius: 50px;
+                    transition: all 0.5s ease;
+                }
+                
+                /* Handle on hover */
+                &::-webkit-scrollbar-thumb:hover {
+                    background: #21336183;
+                }
 
                 li{
                     margin:0;
-                    padding: 0;
+                    padding: 3px 0;
+                    padding-right: 5px;
                     text-indent: 0;
                     list-style-type: 0;
                     display: flex;
                     justify-content: space-between;
+                    font-size: 1.1em;
+                    
 
                     span{
                         color: white;
@@ -137,7 +197,8 @@ section[data-class="send"].send{
     }
 
     @media (min-width: 1024px) {
-        padding: 150px 0;
+        padding-top: 150px;
+        height: 700px;
 
         h2{
             font-size: 3.2em;

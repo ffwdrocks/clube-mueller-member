@@ -479,7 +479,8 @@ section[data-class=send].send {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 0;
+  padding-top: 100px;
+  height: 600px;
   z-index: 2;
 }
 section[data-class=send].send h2 {
@@ -559,28 +560,75 @@ section[data-class=send].send .invited .heading button {
   background: transparent;
   border: none;
   outline: none;
+  transition: all 0.5s ease;
+  transform-origin: center;
+  transform: rotateX(180deg);
+  cursor: pointer;
+}
+section[data-class=send].send .invited .heading button.open {
+  transform: rotateX(0deg);
+}
+section[data-class=send].send .invited .heading button:hover {
+  opacity: 0.6;
 }
 section[data-class=send].send .invited .invited-box {
   width: 100%;
+  height: 160px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+section[data-class=send].send .invited .invited-box.open .list-heading {
+  transform: translateY(-160px);
+}
+section[data-class=send].send .invited .invited-box.open ul {
+  transform: translateY(-160px);
 }
 section[data-class=send].send .invited .invited-box .list-heading {
   display: flex;
   justify-content: space-between;
+  padding-right: 15px;
+  transform: translateY(0px);
+  transition: all 0.5s ease;
 }
 section[data-class=send].send .invited .invited-box .list-heading p {
   font-size: 1.2em;
 }
 section[data-class=send].send .invited .invited-box ul {
+  transform: translateY(0px);
+  transition: all 0.5s ease;
   width: 100%;
   padding: 0;
+  height: 100px;
+  overflow-y: scroll;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+section[data-class=send].send .invited .invited-box ul::-webkit-scrollbar {
+  width: 10px;
+}
+section[data-class=send].send .invited .invited-box ul::-webkit-scrollbar-track {
+  background: #f1f1f167;
+  border-radius: 50px;
+}
+section[data-class=send].send .invited .invited-box ul::-webkit-scrollbar-thumb {
+  background: #2c458583;
+  border-radius: 50px;
+  transition: all 0.5s ease;
+}
+section[data-class=send].send .invited .invited-box ul::-webkit-scrollbar-thumb:hover {
+  background: #21336183;
 }
 section[data-class=send].send .invited .invited-box ul li {
   margin: 0;
-  padding: 0;
+  padding: 3px 0;
+  padding-right: 5px;
   text-indent: 0;
   list-style-type: 0;
   display: flex;
   justify-content: space-between;
+  font-size: 1.1em;
 }
 section[data-class=send].send .invited .invited-box ul li span {
   color: white;
@@ -593,7 +641,8 @@ section[data-class=send].send .invited .invited-box ul li span.desagree {
 }
 @media (min-width: 1024px) {
   section[data-class=send].send {
-    padding: 150px 0;
+    padding-top: 150px;
+    height: 700px;
   }
   section[data-class=send].send h2 {
     font-size: 3.2em;

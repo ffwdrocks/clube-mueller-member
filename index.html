@@ -299,16 +299,22 @@
                 <div class="heading">
                     <h3>Convites enviados</h3>
 
-                    <button><img src="./assets/arrow-down.svg" alt=""></button>
+                    <button id="invited-list-btn" class="open"><img src="./assets/arrow-down.svg" alt=""></button>
                 </div>
 
-                <div class="invited-box">
+                <div id="invited-box" class="invited-box open">
                     <div class="list-heading">
                         <p>convidado</p> 
                         <p>status</p>
                     </div>
 
                     <ul>
+                        <li><span class="email">nome@mail.com</span> <span class="agree">aceito</span></li>
+                        <li><span class="email">nome@mail.com</span> <span class="desagree">enviado</span></li>
+                        <li><span class="email">nome@mail.com</span> <span class="desagree">enviado</span></li>
+                        <li><span class="email">nome@mail.com</span> <span class="agree">aceito</span></li>
+                        <li><span class="email">nome@mail.com</span> <span class="desagree">enviado</span></li>
+                        <li><span class="email">nome@mail.com</span> <span class="desagree">enviado</span></li>
                         <li><span class="email">nome@mail.com</span> <span class="agree">aceito</span></li>
                         <li><span class="email">nome@mail.com</span> <span class="desagree">enviado</span></li>
                         <li><span class="email">nome@mail.com</span> <span class="desagree">enviado</span></li>
@@ -682,6 +688,7 @@
     <script src="./js/global.js"></script>
     <script src="./js/clipboard.js"></script>
     <script src="./js/levels.js"></script>
+    <script src="./js/invited-list.js"></script>
 </body>
 
 </html>
