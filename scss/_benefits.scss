@@ -175,8 +175,6 @@ section[data-class="benefits"].benefits{
 
     @media (min-width: 1024px) {
         padding-bottom: 80px;
-        background: white;
-        border-radius: 0;
 
         .shape-bg-mob{
             display: none;
@@ -199,7 +197,7 @@ section[data-class="benefits"].benefits{
             justify-content: space-between;
             margin-top: 6vh;
             max-width: 1500px;
-            height: 315px;
+            height: 310px;
 
             .card{
                 height: 100%;

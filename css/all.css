@@ -662,7 +662,7 @@ section[data-class=send].send .invited .invited-box ul li span.desagree {
 
 section[data-class=levels].levels {
   padding: 50px 0;
-  background-color: #EAEAEA;
+  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -712,7 +712,6 @@ section[data-class=levels].levels .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1;
 }
 section[data-class=levels].levels .container .card {
   width: 85%;
@@ -729,7 +728,6 @@ section[data-class=levels].levels .container .card .heading {
   background: #858585;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 15px;
 }
 section[data-class=levels].levels .container .card .heading h2 {
@@ -739,15 +737,6 @@ section[data-class=levels].levels .container .card .heading h2 {
 }
 section[data-class=levels].levels .container .card .heading h2 span {
   font-weight: 500;
-}
-section[data-class=levels].levels .container .card .heading div {
-  display: flex;
-  align-items: center;
-}
-section[data-class=levels].levels .container .card .heading div span {
-  color: white;
-  font-size: 13px;
-  margin-left: 5px;
 }
 section[data-class=levels].levels .container .card .medal {
   width: auto;
@@ -772,13 +761,14 @@ section[data-class=levels].levels .container .card #crown {
   }
 }
 section[data-class=levels].levels .container .card .list {
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 }
 section[data-class=levels].levels .container .card .list .line {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  font-size: 1.1em;
 }
 section[data-class=levels].levels .container .card .list .line img {
   margin-right: 5px;
@@ -816,15 +806,14 @@ section[data-class=levels].levels .shape-bg-mob {
     margin: 0 auto;
     padding: 80px 0;
     position: relative;
-    background-color: white;
   }
   section[data-class=levels].levels .title {
     font-size: 2.2em;
   }
   section[data-class=levels].levels .container {
     margin: 0 auto;
-    max-width: 1300px;
-    width: 80%;
+    max-width: 1350px;
+    width: 90%;
     flex-direction: row;
     justify-content: space-between;
     position: relative;
@@ -832,7 +821,7 @@ section[data-class=levels].levels .shape-bg-mob {
   }
   section[data-class=levels].levels .container .card {
     width: 30%;
-    height: 350px;
+    height: 450px;
   }
   section[data-class=levels].levels .shape-bg-desk {
     display: initial;
@@ -995,8 +984,6 @@ section[data-class=benefits].benefits .shape-bg-desk {
 @media (min-width: 1024px) {
   section[data-class=benefits].benefits {
     padding-bottom: 80px;
-    background: white;
-    border-radius: 0;
   }
   section[data-class=benefits].benefits .shape-bg-mob {
     display: none;
@@ -1016,7 +1003,7 @@ section[data-class=benefits].benefits .shape-bg-desk {
     justify-content: space-between;
     margin-top: 6vh;
     max-width: 1500px;
-    height: 315px;
+    height: 310px;
   }
   section[data-class=benefits].benefits .card-box .card {
     height: 100%;
