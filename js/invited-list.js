@@ -3,7 +3,8 @@ const invitedBox = document.getElementById('invited-box')
 let isOpen = false;
 
 invitedListBtn.addEventListener('click', () => {
-    if(!isOpen){
+
+    if(isOpen){
         invitedListBtn.classList.add('open')
         invitedBox.classList.add('open')
         isOpen = !isOpen

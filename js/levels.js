@@ -2,7 +2,7 @@ const SILVER_SCORE = 0;
 const BLACK_SCORE = 45;
 const DIAMOND_SCORE = 80;
 
-let currentScore = 45;
+let currentScore = 55;
 let currentLevel = ""
 
 if(currentScore < BLACK_SCORE){

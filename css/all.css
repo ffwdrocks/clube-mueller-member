@@ -35,6 +35,7 @@ div[data-class=main].main {
   font-family: "Mangerica";
   max-width: 100%;
   position: relative;
+  background: linear-gradient(104.28deg, #9E181B -3.87%, #2C4585 92.19%);
 }
 
 html {
@@ -175,6 +176,16 @@ section[data-class=hero].hero .balance-box div {
 }
 section[data-class=hero].hero .balance-box div .value {
   font-size: 2.5em;
+  font-weight: 200;
+}
+section[data-class=hero].hero .balance-box div .value span {
+  font-weight: 600;
+}
+section[data-class=hero].hero .balance-box div .label {
+  font-weight: 200;
+}
+section[data-class=hero].hero .balance-box div .label span {
+  font-weight: 600;
 }
 section[data-class=hero].hero .balance-box div:nth-child(2) {
   margin-top: 20px;
@@ -209,9 +220,11 @@ section[data-class=hero].hero .arrow {
 @media (min-width: 1024px) {
   section[data-class=hero].hero {
     height: 105vh;
+    background: transparent;
   }
   section[data-class=hero].hero h1 {
-    font-size: clamp(1.5em, 2.8em, 2.5vw);
+    font-size: 3em;
+    font-size: clamp(1.5em, 4em, 3vw);
     margin-top: 8vh;
   }
   section[data-class=hero].hero .icons {
@@ -234,6 +247,12 @@ section[data-class=hero].hero .arrow {
     margin: 0 !important;
     border-radius: 0;
     box-shadow: none;
+  }
+  section[data-class=hero].hero .balance-box div .value {
+    font-size: 3em;
+  }
+  section[data-class=hero].hero .balance-box div .label {
+    font-size: 1.2em;
   }
   section[data-class=hero].hero .balance-box div:nth-child(1) {
     border-radius: 50px;
@@ -310,12 +329,12 @@ section[data-class=scoreboard].scoreboard a {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.8em;
-  color: #9E181B;
-  background-color: white;
+  color: #75A637;
+  background-color: #EBEBEB;
   border-radius: 50px;
   text-decoration: none;
   padding: 10px 20px;
-  box-shadow: 0px 4px 34px 0px #00000015;
+  box-shadow: 0px 4px 34px 0px #00000030;
 }
 @media (min-width: 1024px) {
   section[data-class=scoreboard].scoreboard {
@@ -351,7 +370,7 @@ section[data-class=scoreboard].scoreboard a {
     transition: all 0.5s ease;
   }
   section[data-class=scoreboard].scoreboard a:hover {
-    background-color: #9E181B;
+    background-color: #75A637;
     color: white;
   }
 }
@@ -643,6 +662,7 @@ section[data-class=send].send .invited .invited-box ul li span.desagree {
   section[data-class=send].send {
     padding-top: 150px;
     height: 700px;
+    background: transparent;
   }
   section[data-class=send].send h2 {
     font-size: 3.2em;
@@ -712,6 +732,7 @@ section[data-class=levels].levels .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 2;
 }
 section[data-class=levels].levels .container .card {
   width: 85%;
