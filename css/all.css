@@ -219,7 +219,7 @@ section[data-class=hero].hero .arrow {
 }
 @media (min-width: 1024px) {
   section[data-class=hero].hero {
-    height: 105vh;
+    height: 108vh;
     background: transparent;
   }
   section[data-class=hero].hero h1 {
@@ -260,6 +260,10 @@ section[data-class=hero].hero .arrow {
     box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.53);
     z-index: 1;
     padding-left: 120px;
+  }
+  section[data-class=hero].hero .arrow {
+    width: 20px;
+    height: 60px;
   }
 }
 

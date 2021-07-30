@@ -110,7 +110,7 @@ section[data-class="hero"].hero{
   } 
 
   @media (min-width: 1024px){
-    height: 105vh;
+    height: 108vh;
     background: transparent;
 
     h1{
@@ -158,6 +158,11 @@ section[data-class="hero"].hero{
           padding-left: 120px;
         }
       }
+    }
+
+    .arrow{
+      width: 20px;
+      height: 60px;
     }
   }
 }
