@@ -256,10 +256,10 @@ section[data-class=hero].hero .arrow {
     font-size: clamp(1em, 1.5em, 1.2vw);
   }
   section[data-class=hero].hero .balance-box div:nth-child(1) {
-    border-radius: 50px;
+    border-radius: 75px;
     box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.53);
     z-index: 1;
-    padding-left: 100px;
+    padding-left: 120px;
   }
 }
 
