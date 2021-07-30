@@ -224,21 +224,21 @@ section[data-class=hero].hero .arrow {
   }
   section[data-class=hero].hero h1 {
     font-size: 3em;
-    font-size: clamp(1.5em, 4em, 3vw);
-    margin-top: 8vh;
+    font-size: clamp(1.5em, 4.5em, 3.2vw);
+    margin-top: 12vh;
   }
   section[data-class=hero].hero .icons {
-    width: clamp(180px, 280px, 12vw);
-    margin-top: 2vh;
+    width: clamp(180px, 360px, 18vw);
+    margin-top: 4vh;
   }
   section[data-class=hero].hero .line {
-    width: clamp(180px, 280px, 12vw);
+    width: clamp(180px, 360px, 18vw);
     margin-top: 6vh;
   }
   section[data-class=hero].hero .balance-box {
     flex-direction: row;
     justify-content: center;
-    border-radius: 50px;
+    border-radius: 75px;
     overflow: hidden;
     width: max-content;
     background-color: white;
@@ -247,12 +247,13 @@ section[data-class=hero].hero .arrow {
     margin: 0 !important;
     border-radius: 0;
     box-shadow: none;
+    padding: 15px 70px;
   }
   section[data-class=hero].hero .balance-box div .value {
-    font-size: 3em;
+    font-size: clamp(2em, 4em, 3vw);
   }
   section[data-class=hero].hero .balance-box div .label {
-    font-size: 1.2em;
+    font-size: clamp(1em, 1.5em, 1.2vw);
   }
   section[data-class=hero].hero .balance-box div:nth-child(1) {
     border-radius: 50px;
