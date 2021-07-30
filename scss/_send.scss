@@ -198,16 +198,36 @@ section[data-class="send"].send{
 
     @media (min-width: 1024px) {
         padding-top: 150px;
-        height: 700px;
+        height: 820px;
         background: transparent;
 
         h2{
-            font-size: 3.2em;
+            font-size: clamp(3.2em, 4.5em, 3.5vw);
         }
 
         form{
-            width: 45%;
-            max-width: 700px;
+            width: 50%;
+            max-width: 900px;
+            margin-top: 100px;
+
+            .input-box{
+                height: 50px;
+
+                input{
+                    font-size: 1.5em;
+                }
+            }
+
+            button{
+                height: 50px;
+                font-size: 1.5em;
+                cursor: pointer;
+                transition: all 0.5s ease;
+
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
         }
 
         p{
@@ -215,8 +235,34 @@ section[data-class="send"].send{
         }
 
         .invited{
-            width: 45%;
-            max-width: 700px;
+            width: 50%;
+            max-width: 900px;
+            margin-top: 80px;
+
+            .heading{
+
+                h3{
+                    font-size: clamp(1.3em, 1.8em, 1.4vw);
+                    
+                }
+            }
+
+            .invited-box{
+
+                .list-heading{
+
+                    p{
+                        font-size: clamp(1.2em, 1.7em, 1.3vw);
+                    }
+
+                    ul{
+
+                        li{
+                            font-size: clamp(1.1em, 1.6em, 1.2vw);
+                        }
+                    }
+                }
+            }
         }
     }
 }

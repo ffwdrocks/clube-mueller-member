@@ -340,6 +340,7 @@ section[data-class=scoreboard].scoreboard a {
   text-decoration: none;
   padding: 10px 20px;
   box-shadow: 0px 4px 34px 0px #00000030;
+  outline: none;
 }
 @media (min-width: 1024px) {
   section[data-class=scoreboard].scoreboard {
@@ -347,12 +348,17 @@ section[data-class=scoreboard].scoreboard a {
     margin: -120px auto 0;
     border-radius: 50px;
     display: grid;
-    grid-template-columns: 30% 20% 40% 10%;
+    grid-template-columns: 20% 20% 50% 10%;
     grid-template-rows: 60% 40%;
   }
   section[data-class=scoreboard].scoreboard .score-box {
     grid-column: 2/3;
     grid-row: 1/3;
+    width: clamp(180px, 250px, 14vw);
+    height: clamp(180px, 250px, 14vw);
+  }
+  section[data-class=scoreboard].scoreboard .score-box .dynamic {
+    font-size: clamp(1.5em, 2em, 1.5vw);
   }
   section[data-class=scoreboard].scoreboard .text-box {
     grid-column: 3/4;
@@ -362,16 +368,17 @@ section[data-class=scoreboard].scoreboard a {
   section[data-class=scoreboard].scoreboard .text-box h2 {
     width: 100%;
     text-align: left;
-    font-size: 1.8em;
+    font-size: clamp(2.5em, 4em, 3vw);
   }
   section[data-class=scoreboard].scoreboard .text-box h3 {
     text-align: left;
+    font-size: clamp(1.6em, 2.2em, 1.7vw);
   }
   section[data-class=scoreboard].scoreboard a {
     grid-column: 3/4;
     grid-row: 2/3;
     width: max-content;
-    font-size: 0.9em;
+    font-size: clamp(0.9em, 1.2em, 0.9vw);
     transition: all 0.5s ease;
   }
   section[data-class=scoreboard].scoreboard a:hover {
@@ -666,22 +673,48 @@ section[data-class=send].send .invited .invited-box ul li span.desagree {
 @media (min-width: 1024px) {
   section[data-class=send].send {
     padding-top: 150px;
-    height: 700px;
+    height: 820px;
     background: transparent;
   }
   section[data-class=send].send h2 {
-    font-size: 3.2em;
+    font-size: clamp(3.2em, 4.5em, 3.5vw);
   }
   section[data-class=send].send form {
-    width: 45%;
-    max-width: 700px;
+    width: 50%;
+    max-width: 900px;
+    margin-top: 100px;
+  }
+  section[data-class=send].send form .input-box {
+    height: 50px;
+  }
+  section[data-class=send].send form .input-box input {
+    font-size: 1.5em;
+  }
+  section[data-class=send].send form button {
+    height: 50px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  section[data-class=send].send form button:hover {
+    opacity: 0.8;
   }
   section[data-class=send].send p {
     font-size: 12px;
   }
   section[data-class=send].send .invited {
-    width: 45%;
-    max-width: 700px;
+    width: 50%;
+    max-width: 900px;
+    margin-top: 80px;
+  }
+  section[data-class=send].send .invited .heading h3 {
+    font-size: clamp(1.3em, 1.8em, 1.4vw);
+  }
+  section[data-class=send].send .invited .invited-box .list-heading p {
+    font-size: clamp(1.2em, 1.7em, 1.3vw);
+  }
+  section[data-class=send].send .invited .invited-box .list-heading ul li {
+    font-size: clamp(1.1em, 1.6em, 1.2vw);
   }
 }
 
